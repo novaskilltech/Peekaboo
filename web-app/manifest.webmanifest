@@ -4,8 +4,8 @@
   "description": "Application de chiffrement local de bout en bout 100% hors-ligne (Air-Gap).",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#080a0f",
-  "theme_color": "#080a0f",
+  "background_color": "#0b141a",
+  "theme_color": "#111b21",
   "orientation": "portrait",
   "icons": [
     {

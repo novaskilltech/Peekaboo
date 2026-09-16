@@ -2,429 +2,336 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peekaboo — Zero-Knowledge Air-Gap Cipher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Peekaboo — WhatsApp Stealth Edition (Anonymous)</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <meta name="theme-color" content="#030712">
-  <meta name="description" content="Chiffrement local de bout en bout de grade militaire. Vos messages restent invisibles aux tiers, opérateurs et GAFAM. 0 Serveur. 100% Hors-ligne.">
+  <meta name="theme-color" content="#111b21">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
-<body>
-
-  <!-- Navigation Bar Flottante Glassmorphism -->
-  <nav class="glass-nav">
-    <div class="nav-container">
-      <div class="nav-brand" id="nav-brand-logo">
-        <img src="logo.svg" alt="Peekaboo Logo" class="nav-logo-img">
-        <span class="nav-brand-title">PEEKA<span>BOO</span></span>
-      </div>
-      <div class="nav-links">
-        <a href="#features" class="nav-link">Technologie</a>
-        <a href="#bento" class="nav-link">Architecture</a>
-        <a href="#pricing" class="nav-link">Offres</a>
-        <button id="btn-toggle-app" class="btn-3d-nav">
-          <span class="btn-icon">⚡</span> Ouvrir le Coffre-Fort
-        </button>
-      </div>
-    </div>
-  </nav>
+<body class="wa-theme">
 
   <!-- ================================================================= -->
-  <!-- SECTION 1 : LANDING PAGE COMMERCIALE (HERO & BENTO GRID 3D)       -->
+  <!-- SECTION 1 : LANDING PAGE COMMERCIALE MOBILE-OPTIMIZED             -->
   <!-- ================================================================= -->
   <main id="landing-section" class="landing-wrapper">
     
-    <!-- Hero Section -->
+    <!-- Hero Banner WhatsApp Stealth -->
     <section class="hero-section">
-      <div class="hero-badge">
-        <span class="pulsing-dot"></span>
-        <span>ZERO-KNOWLEDGE AIR-GAP PROTOCOL // MILITARY GRADE</span>
+      <div class="stealth-pill">
+        <span class="pulsing-green"></span>
+        <span>WHATSAPP STEALTH CLONE // AIR-GAP ANONYMOUS</span>
+      </div>
+
+      <div class="logo-hero-container">
+        <img src="logo.svg" alt="Peekaboo WhatsApp Anonymous Logo" class="hero-wa-logo">
       </div>
 
       <h1 class="hero-title">
-        Now you see it.<br>
-        <span class="text-gradient">Now you don't.</span>
+        La jumelle secrète de <span class="wa-green-text">WhatsApp</span>.
       </h1>
 
       <p class="hero-subtitle">
-        Le premier bouclier cryptographique local pour WhatsApp, Telegram & SMS.
-        Vos messages sont chiffrés <strong>directement dans la mémoire de votre appareil</strong> avant d'être expédiés.
-        Aucun serveur, aucun cloud, zéro interception possible.
+        Camouflée comme WhatsApp, armée par la cryptographie d'<strong>Anonymous</strong>.
+        Chiffrez vos secrets locaux directement dans votre téléphone. 0 trace pour Meta, 0 interception sur le réseau.
       </p>
 
-      <div class="hero-actions">
-        <button id="btn-hero-launch" class="btn-3d-primary btn-large">
-          <span class="btn-text">Lancer Peekaboo Gratuitement</span>
-          <span class="btn-glow"></span>
+      <div class="hero-cta-box">
+        <button id="btn-hero-launch" class="btn-wa-action btn-pulse">
+          <span>⚡ Ouvrir Peekaboo (WhatsApp Stealth)</span>
         </button>
-        <a href="#bento" class="btn-3d-glass btn-large">
-          <span>Découvrir l'Architecture 3D</span>
-        </a>
       </div>
 
-      <!-- Hero 3D Interactive Card Showcase -->
-      <div class="hero-preview-wrapper">
-        <div class="hero-3d-card">
-          <div class="card-glow-reflection"></div>
-          <div class="preview-header">
-            <div class="preview-dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <div class="preview-status">🔐 PEEKABOO VAULT v1.4.2 — ECDH P-256 / AES-GCM-256</div>
+      <!-- Mockup WhatsApp Mobile Chat Preview -->
+      <div class="wa-chat-preview-card">
+        <div class="wa-chat-header-mini">
+          <div class="wa-avatar-mini">
+            <img src="logo.svg" alt="Avatar">
           </div>
-          <div class="preview-body">
-            <div class="preview-row">
-              <span class="p-tag">CLAIR LOCAL :</span>
-              <span class="p-val">"Rendez-vous à 22h00 pour finaliser le contrat secret."</span>
-            </div>
-            <div class="preview-divider">
-              <span class="divider-icon">⚡ CHIFFREMENT ÉPHÉMÈRE EN MÉMOIRE RAM ⚡</span>
-            </div>
-            <div class="preview-row cipher">
-              <span class="p-tag">PAYLOAD INTERCEPTÉ :</span>
-              <span class="p-val cipher-text">🔐SL1:uH9x_8Wq9K...47sQ_k9X2mQ== (ILLISIBLE POUR WHATSAPP/CLOUD)</span>
-            </div>
+          <div class="wa-chat-info-mini">
+            <div class="wa-chat-name">Mohammed (Vérifié 🔐)</div>
+            <div class="wa-chat-status">en ligne • canal chiffré</div>
+          </div>
+        </div>
+
+        <div class="wa-messages-area-mini">
+          <!-- Bulle Reçue Déchiffrée -->
+          <div class="wa-bubble wa-bubble-incoming">
+            <div class="bubble-sender">Mohammed</div>
+            <div class="bubble-text">Voici le document confidentiel. Transite sous radar.</div>
+            <div class="bubble-meta">22:45</div>
+          </div>
+
+          <!-- Bulle Chiffrée Prête WhatsApp -->
+          <div class="wa-bubble wa-bubble-outgoing">
+            <div class="bubble-text mono-cipher">🔐SL1:uH9x_8Wq9K...47sQ_k9X2mQ==</div>
+            <div class="bubble-meta">22:46 <span class="wa-check">✓✓</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bento Grid Section -->
-    <section id="bento" class="bento-section">
+    <!-- Bento Grid Camouflage & Features -->
+    <section class="bento-section">
       <div class="section-header">
-        <span class="section-tag">ARCHITECTURE BENTO 3D</span>
-        <h2 class="section-title">Pourquoi Peekaboo écrase la concurrence</h2>
-        <p class="section-desc">Une sécurité absolue, sans compromis sur l'expérience utilisateur.</p>
+        <span class="section-tag">LE CAMOUFLAGE PARFAIT</span>
+        <h2 class="section-title">Deux icônes. Une seule vérité.</h2>
       </div>
 
       <div class="bento-grid">
-        <!-- Bento Card 1 (Large) -->
-        <div class="bento-card bento-wide card-glass-3d">
-          <div class="card-badge-neon">0 SERVEUR // AIR-GAP</div>
-          <div class="bento-icon-box">🛡️</div>
-          <h3>Aucun stockage cloud. Jamais.</h3>
-          <p>
-            Contrairement aux messageries traditionnelles qui détiennent des clés maîtresses ou des métadonnées sur leurs clusters,
-            Peekaboo opère <strong>100% hors-ligne dans votre navigateur</strong>. Vos clés privées utilisent Web Crypto API avec le flag non-exportable.
-          </p>
-          <div class="bento-metric">
-            <span class="metric-num">0.00%</span>
-            <span class="metric-label">de données transmises à nos serveurs</span>
-          </div>
+        <div class="bento-card card-wa-glass">
+          <div class="bento-icon">🎭</div>
+          <h3>Camouflage WhatsApp</h3>
+          <p>Installez l'icône sur votre écran d'accueil. Même interface sombre familière, zéro soupçon pour les curieux.</p>
         </div>
 
-        <!-- Bento Card 2 -->
-        <div class="bento-card card-glass-3d">
-          <div class="card-badge-neon">TRANSPORTS HOSTILES</div>
-          <div class="bento-icon-box">💬</div>
-          <h3>Compatible WhatsApp, Telegram & SMS</h3>
-          <p>
-            Inutile de convaincre vos contacts d'installer une nouvelle application compliquée. Échangez des ciphertexts sécurisés via n'importe quel canal existant.
-          </p>
+        <div class="bento-card card-wa-glass">
+          <div class="bento-icon">🛡️</div>
+          <h3>Zéro Serveur Meta</h3>
+          <p>Vos messages ne transitent jamais sur un serveur Peekaboo. Seul le payload illisible passe sur les tuyaux WhatsApp.</p>
         </div>
 
-        <!-- Bento Card 3 -->
-        <div class="bento-card card-glass-3d">
-          <div class="card-badge-neon">AUTO-PURGE</div>
-          <div class="bento-icon-box">⏳</div>
-          <h3>Verrouillage RAM Dynamique</h3>
-          <p>
-            Minuteur d'inactivité et purge instantanée du texte déchiffré. Si vous fermez l'onglet ou quittez l'écran des yeux, les messages s'évaporent de la mémoire vive.
-          </p>
-        </div>
-
-        <!-- Bento Card 4 (Medium) -->
-        <div class="bento-card card-glass-3d">
-          <div class="card-badge-neon">ANTI-INTERCEPTION</div>
-          <div class="bento-icon-box">🔑</div>
-          <h3>ECDH P-256 Asymétrique & AEAD</h3>
-          <p>
-            Chaque message intègre un vecteur d'initialisation unique (IV 96-bit) et un tag d'authentification MAC (128-bit) rendant toute modification ou rejeu immédiatement détectable.
-          </p>
-        </div>
-
-        <!-- Bento Card 5 -->
-        <div class="bento-card card-glass-3d">
-          <div class="card-badge-neon">MODE AVION</div>
-          <div class="bento-icon-box">✈️</div>
-          <h3>PWA Fonctionnelle Hors-Réseau</h3>
-          <p>
-            Installez Peekaboo comme application native sur iOS, Android, Mac ou Windows. Fonctionne même en mode avion dans un bunker ou en vol.
-          </p>
+        <div class="bento-card card-wa-glass">
+          <div class="bento-icon">⚡</div>
+          <h3>Copier / Coller en 1 Clic</h3>
+          <p>Tapez votre message secret, cliquez sur chiffrer : il est copié et prêt à être collé dans votre discussion WhatsApp habituelle.</p>
         </div>
       </div>
     </section>
 
-    <!-- Pricing / Commercial Section -->
-    <section id="pricing" class="pricing-section">
-      <div class="section-header">
-        <span class="section-tag">TARIFICATION SAAS // ACCÈS INSTANTANÉ</span>
-        <h2 class="section-title">Investissez dans votre confidentialité</h2>
-        <p class="section-desc">Choisissez l'offre adaptée à vos besoins stratégiques et professionnels.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <!-- Tier 1 : Starter -->
-        <div class="pricing-card card-glass-3d">
-          <div class="pricing-header">
-            <h3>Édition Découverte</h3>
-            <div class="price">0€ <span>/ à vie</span></div>
-            <p class="price-desc">Pour tester la puissance du protocole Peekaboo.</p>
-          </div>
-          <ul class="pricing-features">
-            <li>✓ Chiffrement ECDH P-256 local</li>
-            <li>✓ Carnet jusqu'à 3 contacts vérifiés</li>
-            <li>✓ PWA Air-Gap hors-ligne</li>
-            <li>✓ 0 Télémétrie, 0 Publicité</li>
-          </ul>
-          <button class="btn-3d-glass btn-full btn-start-free">Commencer Maintenant</button>
-        </div>
-
-        <!-- Tier 2 : Pro (Featured) -->
-        <div class="pricing-card card-glass-3d featured">
-          <div class="popular-ribbon">LE PLUS PRISÉ // PRO</div>
-          <div class="pricing-header">
-            <h3>Licence Peekaboo PRO</h3>
-            <div class="price">49€ <span>/ paiement unique</span></div>
-            <p class="price-desc">La liberté absolue pour dirigeants, journalistes et particuliers avisés.</p>
-          </div>
-          <ul class="pricing-features">
-            <li>✓ Contacts illimités avec fingerprinting</li>
-            <li>✓ Purge mémoire ultra-rapide (10 sec / 1 min)</li>
-            <li>✓ Double clé de secours chiffrée</li>
-            <li>✓ Mode stéganographie & brouillage</li>
-            <li>✓ Accès prioritaire aux futures versions</li>
-          </ul>
-          <button class="btn-3d-primary btn-full btn-start-free">
-            <span class="btn-text">Obtenir la Licence PRO</span>
-            <span class="btn-glow"></span>
-          </button>
-        </div>
-
-        <!-- Tier 3 : Enterprise -->
-        <div class="pricing-card card-glass-3d">
-          <div class="pricing-header">
-            <h3>Équipe & Enterprise</h3>
-            <div class="price">Sur mesure</div>
-            <p class="price-desc">Déploiement sur serveur d'entreprise souverain dédié.</p>
-          </div>
-          <ul class="pricing-features">
-            <li>✓ Déploiement on-premise sous votre domaine</li>
-            <li>✓ Support de gestion de flotte sécurisée</li>
-            <li>✓ Audit cryptographique personnalisé</li>
-            <li>✓ SLA d'assistance 24/7</li>
-          </ul>
-          <button class="btn-3d-glass btn-full" onclick="alert('Contactez notre équipe : enterprise@novaskill.tech')">Contacter l'Équipe</button>
-        </div>
+    <!-- Offres Commerciales / Achat -->
+    <section class="pricing-section">
+      <div class="pricing-card card-wa-glass featured-wa">
+        <div class="wa-badge">ÉDITION COMMERCIALE PRO</div>
+        <h3>Licence Complète Peekaboo</h3>
+        <div class="wa-price">49€ <span class="lifetime">/ licence à vie</span></div>
+        <ul class="wa-feature-list">
+          <li>✓ Raccourci PWA WhatsApp Stealth sur écran d'accueil</li>
+          <li>✓ Contacts illimités avec clés ECDH P-256</li>
+          <li>✓ Auto-verrouillage & purge de la mémoire vive</li>
+          <li>✓ 100% hors-ligne (fonctionne en mode avion)</li>
+        </ul>
+        <button class="btn-wa-action btn-full btn-start-free">Activer sur mon Smartphone</button>
       </div>
     </section>
 
-    <!-- Footer Commercial -->
-    <footer class="commercial-footer">
-      <div class="footer-brand">
-        <img src="logo.svg" alt="Peekaboo Logo" class="footer-logo">
-        <span>PEEKABOO PRO // ZERO-KNOWLEDGE AIR-GAP</span>
-      </div>
-      <p>© 2026 Peekaboo Technologies. Tous droits réservés. Chiffrement souverain local sans tiers de confiance.</p>
+    <footer class="wa-footer">
+      <p>© 2026 Peekaboo Stealth Protocol. Anonymous Zero-Knowledge Technology.</p>
     </footer>
-
   </main>
 
 
   <!-- ================================================================= -->
-  <!-- SECTION 2 : CONSOLE SÉCURISÉE DE CHIFFREMENT (BENTO GLASS 3D)     -->
+  <!-- SECTION 2 : APPLICATION WHATSAPP STEALTH (MOBILE-FIRST HUD)       -->
   <!-- ================================================================= -->
-  <div id="app-section" class="container app-hidden">
-    
-    <!-- Bouton de retour vers la landing page -->
-    <div class="app-top-bar">
-      <button id="btn-back-to-landing" class="btn-back">
-        ← Retour à la présentation
-      </button>
-      <div class="app-vault-status">
-        <span class="pulsing-dot-green"></span>
-        <span>COFFRE-FORT LOCAL ACTIF</span>
-      </div>
-    </div>
+  <div id="app-section" class="wa-app-container app-hidden">
 
-    <!-- Bannière de mise à jour explicite et contrôlée -->
-    <div id="update-banner" class="notification hidden" style="background: rgba(0, 240, 255, 0.15); border: 1px solid var(--neon-cyan); border-left: 4px solid var(--neon-cyan); margin-bottom: 8px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
-        <span style="font-family: var(--font-mono); color: var(--text-primary); font-size: 0.85rem;">
-          ⚡ Une nouvelle version de Peekaboo est disponible.
-        </span>
-        <div style="display: flex; gap: 8px;">
-          <button id="btn-apply-update" class="btn" style="width: auto; padding: 6px 14px; font-size: 0.78rem;">Mettre à jour</button>
-          <button id="btn-update-later" class="btn btn-secondary" style="width: auto; padding: 6px 14px; font-size: 0.78rem;">Plus tard</button>
+    <!-- Top App Bar WhatsApp Dark -->
+    <header class="wa-top-bar">
+      <div class="wa-bar-left">
+        <button id="btn-back-to-landing" class="wa-icon-btn" title="Présentation">
+          ←
+        </button>
+        <div class="wa-brand-flex">
+          <img src="logo.svg" alt="Peekaboo" class="wa-top-logo">
+          <div>
+            <div class="wa-app-title">Peekaboo <span class="anon-tag">ANON</span></div>
+            <div class="wa-app-subtitle">chiffrement local de bout en bout</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <header class="app-header-bento">
-      <div class="brand">
-        <img src="logo.svg" alt="Peekaboo Logo" class="app-header-logo">
-        <div>
-          <h1>PEEKA<span>BOO</span> PRO</h1>
-          <div class="helper-text">AIR-GAP VAULT // ZERO-KNOWLEDGE LOCAL ENGINE</div>
-        </div>
+      <div class="wa-bar-right">
+        <span class="badge-airgap-wa">AIR-GAP ✈️</span>
       </div>
-      <span class="badge-offline">AIR-GAP ACTIF</span>
     </header>
 
-    <div class="tabs">
-      <button class="tab-btn active" id="tab-btn-encrypt">✍️ Chiffrer</button>
-      <button class="tab-btn" id="tab-btn-decrypt">🔓 Déchiffrer</button>
-      <button class="tab-btn" id="tab-btn-contacts">👥 Contacts</button>
-      <button class="tab-btn" id="tab-btn-security">🛡️ Sécurité</button>
+    <!-- Notification / Update Banner -->
+    <div id="update-banner" class="wa-banner hidden">
+      <span>⚡ Mise à jour Peekaboo prête.</span>
+      <button id="btn-apply-update" class="btn-wa-tiny">Recharger</button>
     </div>
 
-    <!-- ONGLET 1 : CHIFFREMENT -->
-    <div id="tab-encrypt" class="card card-glass-3d">
-      <div class="card-title">
-        <span>Rédaction sécurisée</span>
-        <span class="sub-badge">Protocole SifrLayer v1</span>
+    <!-- ZONE DE CONTENU DES ONGLETS (MOBILE BODY) -->
+    <div class="wa-content-body">
+
+      <!-- ================= ONGLET 1 : CHIFFRER (DISCUSSIONS) ================= -->
+      <div id="tab-encrypt" class="wa-tab-pane">
+        
+        <!-- Contact Selector Bar (Style WhatsApp Chat Header) -->
+        <div class="wa-recipient-bar">
+          <label for="select-contact" class="wa-recipient-label">Destinataire :</label>
+          <select id="select-contact" class="wa-select">
+            <option value="">Sélectionner un contact chiffré...</option>
+          </select>
+        </div>
+        <div id="contact-fp" class="fingerprint-tag-wa"></div>
+
+        <!-- Zone de chat / Bulles -->
+        <div class="wa-chat-canvas">
+          
+          <!-- Notice de sécurité style WhatsApp -->
+          <div class="wa-encryption-pill">
+            🔒 Les messages sont chiffrés sur votre appareil avec ECDH P-256. Personne en dehors de votre contact ne peut les lire.
+          </div>
+
+          <div class="wa-form-group">
+            <label class="wa-input-label">Votre message confidentiel :</label>
+            <textarea id="plaintext-input" class="wa-textarea" placeholder="Tapez votre message secret ici..."></textarea>
+          </div>
+
+          <!-- Bouton Chiffrer Style WhatsApp Action -->
+          <button class="btn-wa-action" id="btn-encrypt">
+            <span class="btn-icon">🔐</span> Chiffrer & Copier pour WhatsApp
+          </button>
+
+          <div id="encrypt-notification" class="wa-notification"></div>
+
+          <!-- Résultat Ciphertext (Bulle Sortante) -->
+          <div id="ciphertext-result" class="hidden">
+            <div class="wa-bubble-result">
+              <div class="bubble-result-title">Message chiffré prêt à envoyer :</div>
+              <div id="ciphertext-output" class="wa-cipher-box"></div>
+              <button class="btn-wa-secondary" id="btn-copy-ciphertext">
+                📋 Re-copier le texte chiffré
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="form-group">
-        <label for="select-contact">Destinataire vérifié :</label>
-        <select id="select-contact">
-          <option value="">Sélectionnez un contact...</option>
-        </select>
-        <div id="contact-fp" class="fingerprint-tag"></div>
+      <!-- ================= ONGLET 2 : DÉCHIFFRER ================= -->
+      <div id="tab-decrypt" class="wa-tab-pane hidden">
+        <div class="wa-chat-canvas">
+          <div class="wa-pane-header">
+            <span>🔓 Lecteur de Message Reçu</span>
+            <button class="btn-wa-danger" id="btn-wipe-memory">🧹 Effacer</button>
+          </div>
+
+          <div class="wa-form-group">
+            <label class="wa-input-label">Collez le message reçu de WhatsApp (🔐SL1:...) :</label>
+            <textarea id="ciphertext-input" class="wa-textarea" placeholder="Collez le texte chiffré ici..."></textarea>
+          </div>
+
+          <div class="wa-btn-row">
+            <button class="btn-wa-action" id="btn-decrypt">
+              <span>🔓</span> Déchiffrer
+            </button>
+            <button class="btn-wa-secondary btn-auto" id="btn-paste">
+              📋 Coller
+            </button>
+          </div>
+
+          <div id="decrypt-notification" class="wa-notification"></div>
+
+          <!-- Message Déchiffré (Bulle Entrante Verte) -->
+          <div id="decrypted-result-box" class="hidden">
+            <div class="wa-incoming-card">
+              <div class="incoming-label">Message déchiffré en clair :</div>
+              <div id="decrypted-text" class="wa-decrypted-text"></div>
+              <div id="sender-fp" class="wa-sender-badge"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="plaintext-input">Votre message secret (ne transite jamais en clair) :</label>
-        <textarea id="plaintext-input" placeholder="Écrivez votre message privé ici..."></textarea>
+      <!-- ================= ONGLET 3 : CONTACTS ================= -->
+      <div id="tab-contacts" class="wa-tab-pane hidden">
+        <div class="wa-chat-canvas">
+          
+          <!-- Mon Identité -->
+          <div class="wa-card-section">
+            <div class="wa-section-title">Mon Empreinte & Invitation</div>
+            <div class="wa-fp-display" id="my-fingerprint">Génération de la clé...</div>
+            <div id="my-invite-string" class="wa-cipher-box mini-box"></div>
+            <button class="btn-wa-secondary" id="btn-copy-invite">📋 Copier mon invitation</button>
+          </div>
+
+          <!-- Ajouter Contact -->
+          <div class="wa-card-section">
+            <div class="wa-section-title">Ajouter un correspondant</div>
+            <div class="wa-form-group">
+              <input type="text" id="contact-name" class="wa-input" placeholder="Nom ou pseudo (ex: Sarah, Alex)">
+            </div>
+            <div class="wa-form-group">
+              <textarea id="contact-invite" class="wa-textarea small" placeholder="Collez ici l'invitation (🔑SIFR-INVITE:...)"></textarea>
+            </div>
+            <button class="btn-wa-action" id="btn-add-contact">
+              <span>👥</span> Enregistrer le contact
+            </button>
+            <div id="contact-notification" class="wa-notification"></div>
+          </div>
+
+          <!-- Liste des Contacts -->
+          <div class="wa-card-section">
+            <div class="wa-section-title">Contacts Enregistrés</div>
+            <div id="contacts-list" class="wa-contacts-container"></div>
+          </div>
+
+        </div>
       </div>
 
-      <button class="btn btn-3d-primary" id="btn-encrypt">
-        <span>🔐</span> Chiffrer et Copier le message
+      <!-- ================= ONGLET 4 : SÉCURITÉ & AUDIT ================= -->
+      <div id="tab-security" class="wa-tab-pane hidden">
+        <div class="wa-chat-canvas">
+          
+          <div class="wa-card-section">
+            <div class="wa-section-title">Contrôle de Sécurité & Air-Gap</div>
+            <div id="checklist-container" class="wa-checklist"></div>
+          </div>
+
+          <div class="wa-card-section">
+            <div class="wa-section-title">Verrouillage de la RAM</div>
+            <label class="wa-input-label">Purger automatiquement après :</label>
+            <select id="select-auto-lock" class="wa-select">
+              <option value="1">1 minute</option>
+              <option value="5" selected>5 minutes</option>
+              <option value="15">15 minutes</option>
+              <option value="0">Désactivé</option>
+            </select>
+          </div>
+
+          <div class="wa-card-section">
+            <div class="wa-section-title">Empreinte Système</div>
+            <div class="wa-sys-info">
+              <div>Version : <span>1.4.2 Stealth</span></div>
+              <div>Mode : <span>WhatsApp Dark Anonymous</span></div>
+              <div>Web Crypto : <span>IndexedDB (Non-extractable)</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- BARRE DE NAVIGATION INFÉRIEURE (MOBILE BOTTOM BAR WHATSAPP)       -->
+    <!-- ================================================================= -->
+    <nav class="wa-bottom-nav">
+      <button class="wa-nav-item active" id="tab-btn-encrypt">
+        <span class="wa-nav-icon">💬</span>
+        <span class="wa-nav-label">Chiffrer</span>
       </button>
 
-      <div id="encrypt-notification" class="notification"></div>
-
-      <div id="ciphertext-result" class="hidden">
-        <div class="form-group margin-top">
-          <label>Texte chiffré prêt à coller dans WhatsApp / Telegram :</label>
-          <div id="ciphertext-output" class="output-box"></div>
-        </div>
-        <button class="btn btn-secondary" id="btn-copy-ciphertext">📋 Re-copier le texte chiffré</button>
-      </div>
-    </div>
-
-    <!-- ONGLET 2 : DÉCHIFFREMENT -->
-    <div id="tab-decrypt" class="card card-glass-3d hidden">
-      <div class="card-title">
-        <span>Lecteur sécurisé</span>
-        <button class="btn-danger btn-small" id="btn-wipe-memory">🧹 Effacer la mémoire</button>
-      </div>
-
-      <div class="form-group">
-        <label for="ciphertext-input">Collez le message reçu (🔐SL1:...) :</label>
-        <textarea id="ciphertext-input" placeholder="Collez ici le message chiffré provenant de WhatsApp ou Telegram..."></textarea>
-      </div>
-
-      <div class="row-btn">
-        <button class="btn btn-3d-primary" id="btn-decrypt">
-          <span>🔓</span> Déchiffrer le message
-        </button>
-        <button class="btn btn-secondary btn-auto" id="btn-paste">
-          📋 Coller
-        </button>
-      </div>
-
-      <div id="decrypt-notification" class="notification"></div>
-
-      <div id="decrypted-result-box" class="hidden">
-        <div class="form-group margin-top">
-          <label>Message déchiffré en mémoire locale :</label>
-          <div id="decrypted-text" class="decrypted-box"></div>
-          <div id="sender-fp" class="fingerprint-tag"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ONGLET 3 : CONTACTS & MON IDENTITÉ -->
-    <div id="tab-contacts" class="card card-glass-3d hidden">
-      <div class="card-title">Mon Identité Cryptographique</div>
-      
-      <div class="identity-box">
-        <div>
-          <label>Mon empreinte publique de sécurité :</label>
-          <div id="my-fingerprint" class="my-fp-text">Génération...</div>
-        </div>
-        <div>
-          <label>Mon invitation sécurisée (à envoyer à votre contact) :</label>
-          <div id="my-invite-string" class="output-box selectable"></div>
-        </div>
-        <button class="btn btn-secondary" id="btn-copy-invite">📋 Copier mon invitation</button>
-      </div>
-
-      <div class="card-title margin-top-large">Ajouter un contact sécurisé</div>
-      <div class="form-group">
-        <label for="contact-name">Nom ou Pseudonyme du contact :</label>
-        <input type="text" id="contact-name" placeholder="Ex: Mohammed, Sarah...">
-      </div>
-
-      <div class="form-group">
-        <label for="contact-invite">Invitation reçue du contact (🔑SIFR-INVITE:...) :</label>
-        <textarea id="contact-invite" placeholder="Collez l'invitation reçue de votre correspondant..." class="textarea-small"></textarea>
-      </div>
-
-      <button class="btn btn-3d-primary" id="btn-add-contact">
-        <span>👥</span> Valider et Ajouter le contact
+      <button class="wa-nav-item" id="tab-btn-decrypt">
+        <span class="wa-nav-icon">🔓</span>
+        <span class="wa-nav-label">Déchiffrer</span>
       </button>
 
-      <div id="contact-notification" class="notification"></div>
+      <button class="wa-nav-item" id="tab-btn-contacts">
+        <span class="wa-nav-icon">👥</span>
+        <span class="wa-nav-label">Contacts</span>
+      </button>
 
-      <div class="card-title margin-top-large">Mes contacts enregistrés</div>
-      <div id="contacts-list" class="contacts-container"></div>
-    </div>
-
-    <!-- ONGLET 4 : PARAMÈTRES & VÉRIFICATION D'INSTALLATION -->
-    <div id="tab-security" class="card card-glass-3d hidden">
-      <div class="card-title">
-        <span>Contrôle d'Intégrité & Sécurité</span>
-        <span class="sub-badge">Vérification Réelle</span>
-      </div>
-
-      <div class="identity-box" style="margin-bottom: 20px;">
-        <label>Diagnostic en temps réel :</label>
-        <div id="checklist-container" style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;"></div>
-      </div>
-
-      <div class="form-group">
-        <label for="select-auto-lock">Verrouillage automatique (purge mémoire) :</label>
-        <select id="select-auto-lock">
-          <option value="1">1 minute d'inactivité</option>
-          <option value="5" selected>5 minutes d'inactivité</option>
-          <option value="15">15 minutes d'inactivité</option>
-          <option value="0">Désactivé (Non recommandé)</option>
-        </select>
-        <div class="helper-text">Purgera automatiquement tout texte déchiffré après la période d'inactivité choisie.</div>
-      </div>
-
-      <div class="card-title margin-top-large">Traçabilité du Build</div>
-      <div class="identity-box">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-family: var(--font-mono); font-size: 0.8rem;">
-          <div><span style="color: var(--text-muted);">Version :</span> <span id="sec-version" style="color: var(--neon-cyan);">1.4.2</span></div>
-          <div><span style="color: var(--text-muted);">Build ID :</span> <span id="sec-build" style="color: var(--neon-cyan);">2026.09.16.2245</span></div>
-          <div><span style="color: var(--text-muted);">Commit Git :</span> <span id="sec-commit" style="color: var(--neon-cyan);">074ebf7</span></div>
-          <div><span style="color: var(--text-muted);">Statut :</span> <span id="sec-env" style="color: var(--neon-emerald);">Air-Gap Strict</span></div>
-        </div>
-      </div>
-
-      <div class="card-title margin-top-large">Engagement de Confidentialité</div>
-      <div class="helper-text" style="line-height: 1.6; color: var(--text-secondary); font-size: 0.82rem;">
-        Votre message est chiffré directement sur cet appareil avant d'être copié ou envoyé vers votre messagerie.<br><br>
-        Peekaboo n'a pas besoin de connaître le contenu de votre message. Le service utilisé pour transporter le message reçoit uniquement le texte chiffré.<br><br>
-        La sécurité dépend cependant également de votre appareil et de votre navigateur. Peekaboo ne prétend pas offrir une sécurité absolue contre un terminal déjà infecté par un logiciel espion.
-      </div>
-    </div>
+      <button class="wa-nav-item" id="tab-btn-security">
+        <span class="wa-nav-icon">🛡️</span>
+        <span class="wa-nav-label">Sécurité</span>
+      </button>
+    </nav>
 
   </div>
 

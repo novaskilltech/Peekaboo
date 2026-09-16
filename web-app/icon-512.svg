@@ -1,79 +1,104 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
   <defs>
-    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.3"/>
-      <stop offset="60%" stop-color="#4facfe" stop-opacity="0.05"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
-    </radialGradient>
-
-    <linearGradient id="glassFacet1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
-      <stop offset="50%" stop-color="#00f2fe" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#020b1c" stop-opacity="0.75"/>
+    <!-- WhatsApp Gradient (Gauche) -->
+    <linearGradient id="waGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2fe675"/>
+      <stop offset="50%" stop-color="#25d366"/>
+      <stop offset="100%" stop-color="#128c7e"/>
     </linearGradient>
 
-    <linearGradient id="glassFacet2" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#4facfe" stop-opacity="0.55"/>
-      <stop offset="60%" stop-color="#7928ca" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#030712" stop-opacity="0.9"/>
+    <!-- Anonymous Dark Shadow Gradient (Droite) -->
+    <linearGradient id="anonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="40%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#030712"/>
     </linearGradient>
 
-    <linearGradient id="glassFacet3" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.65"/>
-      <stop offset="40%" stop-color="#00df89" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#040a17" stop-opacity="0.95"/>
+    <!-- Neon Rim for anonymous side -->
+    <linearGradient id="stealthRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#25d366"/>
+      <stop offset="50%" stop-color="#00f0ff"/>
+      <stop offset="100%" stop-color="#10b981"/>
     </linearGradient>
 
-    <linearGradient id="neonRim" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00f2fe"/>
-      <stop offset="40%" stop-color="#4facfe"/>
-      <stop offset="75%" stop-color="#7928ca"/>
-      <stop offset="100%" stop-color="#00df89"/>
-    </linearGradient>
-
-    <radialGradient id="irisGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="30%" stop-color="#00f2fe"/>
-      <stop offset="75%" stop-color="#7928ca"/>
-      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-    </radialGradient>
-
-    <filter id="neonShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="14" result="blur"/>
-      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    <!-- Drop Shadow Filter -->
+    <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#25d366" flood-opacity="0.35"/>
     </filter>
+
+    <clipPath id="leftHalf">
+      <rect x="0" y="0" width="256" height="512"/>
+    </clipPath>
+
+    <clipPath id="rightHalf">
+      <rect x="256" y="0" width="256" height="512"/>
+    </clipPath>
   </defs>
 
-  <circle cx="250" cy="250" r="220" fill="url(#bgGlow)"/>
+  <!-- Global Outer Glow / Ambience -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="rgba(37, 211, 102, 0.15)" stroke-width="8"/>
 
-  <g filter="url(#neonShadow)">
-    <polygon points="250,60 380,135 250,210 120,135" fill="url(#glassFacet1)" stroke="url(#neonRim)" stroke-width="2.5" stroke-opacity="0.85"/>
-    <polygon points="120,135 250,210 250,360 120,285" fill="url(#glassFacet2)" stroke="url(#neonRim)" stroke-width="2.5" stroke-opacity="0.75"/>
-    <polygon points="250,210 380,135 380,285 250,360" fill="url(#glassFacet3)" stroke="url(#neonRim)" stroke-width="2.5" stroke-opacity="0.8"/>
+  <!-- ================================================================ -->
+  <!-- 1. CÔTÉ GAUCHE : LOGO WHATSAPP CLASSIQUE                        -->
+  <!-- ================================================================ -->
+  <g clip-path="url(#leftHalf)" filter="url(#shadowFilter)">
+    <!-- Bulle de discussion WhatsApp principale -->
+    <path d="M 256,50 C 142.23,50 50,142.23 50,256 C 50,296.2 61.5,333.8 81.5,365.8 L 60,455 L 152.5,431 C 183.2,449 218.4,460 256,460 C 369.77,460 462,367.77 462,256 C 462,142.23 369.77,50 256,50 Z" 
+          fill="url(#waGradient)" />
+
+    <!-- Bordure interne subtile -->
+    <path d="M 256,65 C 150.5,65 65,150.5 65,256 C 65,293.4 75.8,328.2 94.4,358 L 76,436 L 157.2,414.7 C 186,431.5 219.7,442 256,442 C 361.5,442 447,356.5 447,256 C 447,150.5 361.5,65 256,65 Z" 
+          fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="3"/>
+
+    <!-- Combiné Téléphonique WhatsApp Blanc (Moitié Gauche) -->
+    <path d="M 175,160 C 168,160 158,163 150,172 C 142,181 125,198 125,233 C 125,268 150,302 153,306 C 157,311 202,380 270,410 C 326,434 338,429 350,428 C 362,427 388,412 393,398 C 398,384 398,371 397,369 C 395,366 390,363 381,359 L 340,339 C 331,335 324,334 318,343 L 305,359 C 300,365 292,366 285,362 C 270,355 240,338 215,310 C 195,288 183,264 179,255 C 176,248 179,243 184,237 L 196,223 C 201,217 200,211 198,206 L 178,166 C 175,161 171,160 175,160 Z" 
+          fill="#ffffff" />
   </g>
 
-  <line x1="250" y1="60" x2="250" y2="210" stroke="#ffffff" stroke-width="2" stroke-opacity="0.7"/>
-  <line x1="120" y1="135" x2="250" y2="210" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.4"/>
-  <line x1="380" y1="135" x2="250" y2="210" stroke="#00f2fe" stroke-width="1.5" stroke-opacity="0.6"/>
-  <line x1="250" y1="210" x2="250" y2="360" stroke="#00df89" stroke-width="2" stroke-opacity="0.5"/>
+  <!-- ================================================================ -->
+  <!-- 2. CÔTÉ DROIT : MASQUE ANONYMOUS (GUY FAWKES)                   -->
+  <!-- ================================================================ -->
+  <g clip-path="url(#rightHalf)" filter="url(#shadowFilter)">
+    <!-- Base sombre / furtive de la bulle -->
+    <path d="M 256,50 C 142.23,50 50,142.23 50,256 C 50,296.2 61.5,333.8 81.5,365.8 L 60,455 L 152.5,431 C 183.2,449 218.4,460 256,460 C 369.77,460 462,367.77 462,256 C 462,142.23 369.77,50 256,50 Z" 
+          fill="url(#anonGradient)" stroke="url(#stealthRim)" stroke-width="4"/>
 
-  <circle cx="250" cy="210" r="70" fill="url(#irisGlow)" opacity="0.85"/>
+    <!-- Lignes de circuit / Grille Cyber Stealth -->
+    <path d="M 256,90 L 380,90 L 420,130 L 420,280 L 370,330" fill="none" stroke="rgba(0, 240, 255, 0.25)" stroke-width="2" stroke-dasharray="6,4"/>
+    <circle cx="380" cy="90" r="4" fill="#00f0ff"/>
+    <circle cx="420" cy="280" r="4" fill="#25d366"/>
 
-  <g transform="translate(250, 210)">
-    <path d="M -75,0 Q 0,-48 75,0 Q 0,48 -75,0 Z" fill="rgba(4, 9, 20, 0.82)" stroke="url(#neonRim)" stroke-width="3"/>
-    <circle cx="0" cy="0" r="26" fill="#020617" stroke="#00f2fe" stroke-width="2.5"/>
-    <circle cx="0" cy="0" r="14" fill="#00f2fe" opacity="0.9"/>
-    <circle cx="0" cy="0" r="6" fill="#ffffff"/>
+    <!-- MASQUE D'ANONYMOUS (Demi-visage droit stylisé blanc ivoire) -->
+    <!-- Contourage visage / joue -->
+    <path d="M 256,120 C 320,120 380,165 385,240 C 388,290 355,360 280,410 L 256,420 Z" 
+          fill="#f8fafc" opacity="0.94"/>
 
-    <line x1="-20" y1="-12" x2="-8" y2="-22" stroke="#4facfe" stroke-width="1.8" stroke-linecap="round"/>
-    <line x1="12" y1="-20" x2="22" y2="-8" stroke="#4facfe" stroke-width="1.8" stroke-linecap="round"/>
-    <line x1="20" y1="12" x2="8" y2="22" stroke="#7928ca" stroke-width="1.8" stroke-linecap="round"/>
-    <line x1="-12" y1="20" x2="-22" y2="8" stroke="#00df89" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Fard à joue rose Anonymous -->
+    <ellipse cx="340" cy="275" rx="16" ry="10" fill="#f43f5e" opacity="0.45"/>
 
-    <ellipse cx="-7" cy="-7" rx="3.5" ry="2" fill="#ffffff" opacity="0.9" transform="rotate(-30 -7 -7)"/>
+    <!-- Sourcil arqué machiavélique Anonymous -->
+    <path d="M 265,190 C 300,165 345,178 360,195" fill="none" stroke="#0f172a" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- Fente oculaire sombre & Iris cyber vert/cyan -->
+    <path d="M 270,215 Q 310,195 345,220 Q 310,230 270,215 Z" fill="#030712"/>
+    <circle cx="310" cy="214" r="7" fill="#00f0ff"/>
+    <circle cx="310" cy="214" r="3" fill="#ffffff"/>
+
+    <!-- Moustache recourbée emblématique Anonymous (Guy Fawkes) -->
+    <path d="M 256,310 C 290,305 340,300 375,275 C 365,295 330,325 285,328 L 256,328 Z" 
+          fill="#090d16" stroke="#000000" stroke-width="2"/>
+
+    <!-- Bouc pointu menton -->
+    <path d="M 256,370 C 275,370 285,385 275,410 L 256,412 Z" fill="#090d16"/>
+
+    <!-- Sourire fin sardonique -->
+    <path d="M 256,335 C 290,338 330,332 345,315" fill="none" stroke="#be123c" stroke-width="4" stroke-linecap="round"/>
   </g>
 
-  <circle cx="160" cy="95" r="4" fill="#00f2fe" filter="url(#neonShadow)"/>
-  <circle cx="340" cy="95" r="4" fill="#00df89" filter="url(#neonShadow)"/>
-  <circle cx="250" cy="395" r="4.5" fill="#7928ca" filter="url(#neonShadow)"/>
+  <!-- ================================================================ -->
+  <!-- 3. LIGNE DE FUSION CENTRALE (CYBER SEAM GLITCH)                  -->
+  <!-- ================================================================ -->
+  <line x1="256" y1="50" x2="256" y2="460" stroke="#00f0ff" stroke-width="3" stroke-dasharray="14,6" opacity="0.8"/>
+  <circle cx="256" cy="256" r="6" fill="#00f0ff"/>
 </svg>
