@@ -1,0 +1,489 @@
+
+/* ==========================================================================
+   SIFRLAYER PRO — DESIGN SYSTEM "KINETIC CIPHER" (STITCH-INSPIRED)
+   Style: Géométrie carrée/précise (0px / 2px radius), Glassmorphism sombre,
+   Accents Émeraude & Cyan cyber, typographie technique et hiérarchie Bento.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Fonds & Surfaces */
+  --bg-obsidian: #080a0f;
+  --surface-base: #0d1117;
+  --surface-panel: rgba(18, 24, 38, 0.7);
+  --surface-panel-hover: rgba(24, 32, 50, 0.85);
+  --surface-elevated: #161e2e;
+  
+  /* Lignes & Bordures carrées */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(0, 240, 255, 0.5);
+  --border-accent: rgba(16, 185, 129, 0.4);
+  
+  /* Signatures Lumineuses (Kinetic HUD) */
+  --neon-cyan: #00f0ff;
+  --neon-emerald: #10b981;
+  --neon-amber: #f59e0b;
+  --neon-crimson: #ef4444;
+  
+  /* Typographie */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* Formes carrées (Strict Square Identity) */
+  --radius-sharp: 0px;
+  --radius-micro: 3px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.05) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* Conteneur Bento */
+.container {
+  width: 100%;
+  max-width: 740px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* En-tête Tactique */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--neon-cyan);
+  padding: 18px 22px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-icon {
+  font-size: 1.6rem;
+  background: rgba(0, 240, 255, 0.1);
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+}
+
+.brand h1 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.brand h1 span {
+  color: var(--neon-cyan);
+}
+
+.helper-text {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.badge-offline {
+  font-family: var(--font-mono);
+  background-color: rgba(16, 185, 129, 0.12);
+  color: var(--neon-emerald);
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  font-weight: 600;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-offline::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--neon-emerald);
+  box-shadow: 0 0 8px var(--neon-emerald);
+}
+
+/* Onglets de Commande (Bento Switches) */
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.tab-btn {
+  background: var(--surface-panel);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 13px 14px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.tab-btn:hover {
+  background: var(--surface-panel-hover);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tab-btn.active {
+  background: var(--surface-elevated);
+  color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  box-shadow: inset 0 -2px 0 var(--neon-cyan), 0 0 16px rgba(0, 240, 255, 0.15);
+}
+
+/* Cartes Bento / Panneaux */
+.card {
+  background: var(--surface-panel);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  padding: 26px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* Coins carrés accentués (Tech brackets) */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--neon-cyan);
+  border-left: 2px solid var(--neon-cyan);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid var(--neon-cyan);
+  border-right: 2px solid var(--neon-cyan);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 12px;
+}
+
+.sub-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  padding: 3px 8px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+/* Formulaires & Champs de saisie */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+label::before {
+  content: '>';
+  color: var(--neon-cyan);
+  font-weight: bold;
+}
+
+textarea, input, select {
+  background-color: #06090e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  border-radius: var(--radius-sharp);
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+textarea:focus, input:focus, select:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+  background-color: #090e17;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.textarea-small {
+  min-height: 75px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* Boutons Carrés Haute Performance */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--neon-emerald);
+  color: #021a10;
+  border: none;
+  padding: 14px 24px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: var(--radius-sharp);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+}
+
+.btn:hover {
+  background-color: #34d399;
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #1e293b;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+}
+
+.btn-secondary:hover {
+  background-color: #2e3d55;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.08);
+}
+
+.btn-danger {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  box-shadow: none;
+}
+
+.btn-danger:hover {
+  background-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.3);
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  width: auto;
+}
+
+.btn-auto {
+  width: auto;
+}
+
+.row-btn {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+
+/* Zone de Ciphertext & Lecteur Déchiffré */
+.output-box {
+  background-color: #05080c;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 16px;
+  margin-top: 8px;
+  word-break: break-all;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--neon-cyan);
+  line-height: 1.5;
+  user-select: all;
+  position: relative;
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.6);
+}
+
+.decrypted-box {
+  background-color: rgba(16, 185, 129, 0.06);
+  border: 1px solid var(--border-accent);
+  color: #d1fae5;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  padding: 18px;
+  margin-top: 8px;
+  white-space: pre-wrap;
+  box-shadow: inset 0 0 20px rgba(16, 185, 129, 0.05);
+}
+
+.fingerprint-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--neon-cyan);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Notifications */
+.notification {
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  margin-top: 14px;
+  display: none;
+  border-left: 3px solid transparent;
+}
+
+.notification.success {
+  background-color: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-left: 4px solid var(--neon-emerald);
+  color: #a7f3d0;
+  display: block;
+}
+
+.notification.error {
+  background-color: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-left: 4px solid var(--neon-crimson);
+  color: #fca5a5;
+  display: block;
+}
+
+/* Cadre Identité & Contacts */
+.identity-box {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #05080c;
+  padding: 18px;
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--neon-cyan);
+}
+
+.my-fp-text {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: var(--neon-emerald);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.contacts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #06090e;
+  padding: 12px 16px;
+  border: 1px solid var(--border-subtle);
+  border-left: 2px solid var(--neon-cyan);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.margin-top {
+  margin-top: 16px;
+}
+
+.margin-top-large {
+  margin-top: 28px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .tabs {
+    grid-template-columns: 1fr;
+  }
+  .row-btn {
+    grid-template-columns: 1fr;
+  }
+}
+

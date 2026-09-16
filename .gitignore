@@ -1,0 +1,12 @@
+# Build / Temporary
+.gradle/
+build/
+*.pyc
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SifrLayer — Messagerie Zero-Knowledge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <span class="brand-icon">🔐</span>
+        <div>
+          <h1>SIFR<span>LAYER</span> PRO</h1>
+          <div class="helper-text">TACTICAL ZERO-KNOWLEDGE ENCRYPTION // OFFLINE AIR-GAP</div>
+        </div>
+      </div>
+      <span class="badge-offline">AIR-GAP OPERATIONAL</span>
+    </header>
+
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-btn-encrypt">✍️ Écrire & Chiffrer</button>
+      <button class="tab-btn" id="tab-btn-decrypt">🔓 Lire & Déchiffrer</button>
+      <button class="tab-btn" id="tab-btn-contacts">👥 Identités & Contacts</button>
+    </div>
+
+    <!-- ONGLET 1 : CHIFFREMENT -->
+    <div id="tab-encrypt" class="card">
+      <div class="card-title">
+        <span>Rédaction sécurisée</span>
+        <span class="sub-badge">Protocole SifrLayer v1</span>
+      </div>
+
+      <div class="form-group">
+        <label for="select-contact">Destinataire vérifié :</label>
+        <select id="select-contact">
+          <option value="">Sélectionnez un contact...</option>
+        </select>
+        <div id="contact-fp" class="fingerprint-tag"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="plaintext-input">Votre message secret (ne transite jamais en clair) :</label>
+        <textarea id="plaintext-input" placeholder="Écrivez votre message privé ici..."></textarea>
+      </div>
+
+      <button class="btn" id="btn-encrypt">
+        <span>🔐</span> Chiffrer et Copier le message
+      </button>
+
+      <div id="encrypt-notification" class="notification"></div>
+
+      <div id="ciphertext-result" class="hidden">
+        <div class="form-group margin-top">
+          <label>Texte chiffré prêt à coller dans WhatsApp / Telegram :</label>
+          <div id="ciphertext-output" class="output-box"></div>
+        </div>
+        <button class="btn btn-secondary" id="btn-copy-ciphertext">📋 Re-copier le texte chiffré</button>
+      </div>
+    </div>
+
+    <!-- ONGLET 2 : DÉCHIFFREMENT -->
+    <div id="tab-decrypt" class="card hidden">
+      <div class="card-title">
+        <span>Lecteur sécurisé</span>
+        <button class="btn-danger btn-small" id="btn-wipe-memory">🧹 Effacer la mémoire</button>
+      </div>
+
+      <div class="form-group">
+        <label for="ciphertext-input">Collez le message reçu (🔐SL1:...) :</label>
+        <textarea id="ciphertext-input" placeholder="Collez ici le message chiffré provenant de WhatsApp ou Telegram..."></textarea>
+      </div>
+
+      <div class="row-btn">
+        <button class="btn" id="btn-decrypt">
+          <span>🔓</span> Déchiffrer le message
+        </button>
+        <button class="btn btn-secondary btn-auto" id="btn-paste">
+          📋 Coller
+        </button>
+      </div>
+
+      <div id="decrypt-notification" class="notification"></div>
+
+      <div id="decrypted-result-box" class="hidden">
+        <div class="form-group margin-top">
+          <label>Message déchiffré en mémoire locale :</label>
+          <div id="decrypted-text" class="decrypted-box"></div>
+          <div id="sender-fp" class="fingerprint-tag"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ONGLET 3 : CONTACTS & MON IDENTITÉ -->
+    <div id="tab-contacts" class="card hidden">
+      <div class="card-title">Mon Identité Cryptographique</div>
+      
+      <div class="identity-box">
+        <div>
+          <label>Mon empreinte publique de sécurité :</label>
+          <div id="my-fingerprint" class="my-fp-text">Génération...</div>
+        </div>
+        <div>
+          <label>Mon invitation sécurisée (à envoyer à votre contact) :</label>
+          <div id="my-invite-string" class="output-box selectable"></div>
+        </div>
+        <button class="btn btn-secondary" id="btn-copy-invite">📋 Copier mon invitation</button>
+      </div>
+
+      <div class="card-title margin-top-large">Ajouter un contact sécurisé</div>
+      <div class="form-group">
+        <label for="contact-name">Nom ou Pseudonyme du contact :</label>
+        <input type="text" id="contact-name" placeholder="Ex: Mohammed, Sarah...">
+      </div>
+
+      <div class="form-group">
+        <label for="contact-invite">Invitation reçue du contact (🔑SIFR-INVITE:...) :</label>
+        <textarea id="contact-invite" placeholder="Collez l'invitation reçue de votre correspondant..." class="textarea-small"></textarea>
+      </div>
+
+      <button class="btn" id="btn-add-contact">
+        <span>👥</span> Valider et Ajouter le contact
+      </button>
+
+      <div id="contact-notification" class="notification"></div>
+
+      <div class="card-title margin-top-large">Mes contacts enregistrés</div>
+      <div id="contacts-list" class="contacts-container"></div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
