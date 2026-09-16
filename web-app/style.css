@@ -810,3 +810,149 @@ body.wa-theme {
   font-weight: 600;
   text-shadow: 0 0 8px rgba(37, 211, 102, 0.4);
 }
+
+
+/* ==========================================================================
+   SECTION MANIFESTE : LE POURQUOI DE PEEKABOO (DROITS INDIVIDUELS)
+   ========================================================================== */
+.manifesto-section {
+  width: 100%;
+}
+
+.manifesto-card {
+  background: var(--wa-surface);
+  border: 1px solid rgba(0, 168, 132, 0.35);
+  border-radius: 18px;
+  padding: 28px 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.manifesto-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--wa-green-accent), var(--anon-cyan));
+}
+
+.manifesto-header {
+  margin-bottom: 20px;
+}
+
+.manifesto-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--wa-green-accent);
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.manifesto-title {
+  font-size: clamp(1.35rem, 4.5vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.manifesto-lead {
+  font-size: 1.05rem;
+  color: var(--wa-text-primary);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.manifesto-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.manifesto-box {
+  background: #0b141a;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--wa-border);
+}
+
+.manifesto-box.legit {
+  border-left: 3px solid #38bdf8;
+}
+
+.manifesto-box.abuse {
+  border-left: 3px solid #f43f5e;
+}
+
+.box-icon {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.manifesto-box h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--wa-text-primary);
+}
+
+.manifesto-box p {
+  font-size: 0.88rem;
+  color: var(--wa-text-secondary);
+  line-height: 1.5;
+}
+
+.manifesto-quote-box {
+  background: rgba(0, 168, 132, 0.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px dashed rgba(0, 168, 132, 0.4);
+  margin-bottom: 24px;
+}
+
+.manifesto-quote {
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #a7f3d0;
+}
+
+.manifesto-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pillar-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.pillar-num {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--wa-green-accent);
+  background: rgba(37, 211, 102, 0.1);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  line-height: 1;
+}
+
+.pillar-item h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--wa-text-primary);
+  margin-bottom: 4px;
+}
+
+.pillar-item p {
+  font-size: 0.85rem;
+  color: var(--wa-text-secondary);
+  line-height: 1.5;
+}
