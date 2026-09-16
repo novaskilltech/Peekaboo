@@ -5,9 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SifrLayer — Messagerie Zero-Knowledge</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#080a0f">
 </head>
 <body>
   <div class="container">
+    <!-- Bannière de mise à jour explicite et contrôlée -->
+    <div id="update-banner" class="notification hidden" style="background: rgba(0, 240, 255, 0.15); border: 1px solid var(--neon-cyan); border-left: 4px solid var(--neon-cyan); margin-bottom: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span style="font-family: var(--font-mono); color: var(--text-primary); font-size: 0.85rem;">
+          ⚡ Une nouvelle version de SifrLayer est disponible.
+        </span>
+        <div style="display: flex; gap: 8px;">
+          <button id="btn-apply-update" class="btn" style="width: auto; padding: 6px 14px; font-size: 0.78rem;">Mettre à jour</button>
+          <button id="btn-update-later" class="btn btn-secondary" style="width: auto; padding: 6px 14px; font-size: 0.78rem;">Plus tard</button>
+        </div>
+      </div>
+    </div>
+
     <header>
       <div class="brand">
         <span class="brand-icon">🔐</span>
@@ -19,10 +34,11 @@
       <span class="badge-offline">AIR-GAP OPERATIONAL</span>
     </header>
 
-    <div class="tabs">
-      <button class="tab-btn active" id="tab-btn-encrypt">✍️ Écrire & Chiffrer</button>
-      <button class="tab-btn" id="tab-btn-decrypt">🔓 Lire & Déchiffrer</button>
-      <button class="tab-btn" id="tab-btn-contacts">👥 Identités & Contacts</button>
+    <div class="tabs" style="grid-template-columns: repeat(4, 1fr);">
+      <button class="tab-btn active" id="tab-btn-encrypt">✍️ Chiffrer</button>
+      <button class="tab-btn" id="tab-btn-decrypt">🔓 Déchiffrer</button>
+      <button class="tab-btn" id="tab-btn-contacts">👥 Contacts</button>
+      <button class="tab-btn" id="tab-btn-security">🛡️ Sécurité</button>
     </div>
 
     <!-- ONGLET 1 : CHIFFREMENT -->
@@ -127,6 +143,47 @@
 
       <div class="card-title margin-top-large">Mes contacts enregistrés</div>
       <div id="contacts-list" class="contacts-container"></div>
+    </div>
+
+    <!-- ONGLET 4 : PARAMÈTRES & VÉRIFICATION D'INSTALLATION -->
+    <div id="tab-security" class="card hidden">
+      <div class="card-title">
+        <span>Contrôle d'Intégrité & Sécurité</span>
+        <span class="sub-badge">Vérification Réelle</span>
+      </div>
+
+      <div class="identity-box" style="margin-bottom: 20px;">
+        <label>Diagnostic en temps réel :</label>
+        <div id="checklist-container" style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px;"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="select-auto-lock">Verrouillage automatique (purge mémoire) :</label>
+        <select id="select-auto-lock">
+          <option value="1">1 minute d'inactivité</option>
+          <option value="5" selected>5 minutes d'inactivité</option>
+          <option value="15">15 minutes d'inactivité</option>
+          <option value="0">Désactivé (Non recommandé)</option>
+        </select>
+        <div class="helper-text">Purgera automatiquement tout texte déchiffré après la période d'inactivité choisie.</div>
+      </div>
+
+      <div class="card-title margin-top-large">Traçabilité du Build</div>
+      <div class="identity-box">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-family: var(--font-mono); font-size: 0.8rem;">
+          <div><span style="color: var(--text-muted);">Version :</span> <span id="sec-version" style="color: var(--neon-cyan);">1.4.2</span></div>
+          <div><span style="color: var(--text-muted);">Build ID :</span> <span id="sec-build" style="color: var(--neon-cyan);">2026.09.16.2230</span></div>
+          <div><span style="color: var(--text-muted);">Commit Git :</span> <span id="sec-commit" style="color: var(--neon-cyan);">559b435</span></div>
+          <div><span style="color: var(--text-muted);">Statut :</span> <span id="sec-env" style="color: var(--neon-emerald);">Air-Gap Strict</span></div>
+        </div>
+      </div>
+
+      <div class="card-title margin-top-large">Engagement de Confidentialité</div>
+      <div class="helper-text" style="line-height: 1.6; color: var(--text-secondary); font-size: 0.82rem;">
+        Votre message est chiffré directement sur cet appareil avant d'être copié ou envoyé vers votre messagerie.<br><br>
+        SifrLayer n'a pas besoin de connaître le contenu de votre message. Le service utilisé pour transporter le message reçoit uniquement le texte chiffré.<br><br>
+        La sécurité dépend cependant également de votre appareil et de votre navigateur. SifrLayer ne prétend pas offrir une sécurité absolue contre un terminal déjà infecté par un logiciel espion.
+      </div>
     </div>
 
   </div>

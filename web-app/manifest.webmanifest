@@ -1,0 +1,24 @@
+{
+  "name": "SifrLayer Pro — Zero-Knowledge Cipher",
+  "short_name": "SifrLayer",
+  "description": "Application de chiffrement local de bout en bout 100% hors-ligne (Air-Gap).",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080a0f",
+  "theme_color": "#080a0f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
