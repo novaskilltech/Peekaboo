@@ -1,5 +1,5 @@
-// SifrLayer Pro — Service Worker Tactique (Air-Gap PWA)
-const CACHE_NAME = "sifrlayer-cache-v1.4.2";
+// Peekaboo — Service Worker Tactique (Air-Gap PWA)
+const CACHE_NAME = "peekaboo-cache-v1.4.2";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",

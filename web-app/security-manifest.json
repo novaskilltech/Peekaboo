@@ -1,15 +1,12 @@
 {
   "version": "1.4.2",
-  "buildId": "2026.09.16.2235",
-  "commit": "559b435",
-  "builtAt": "2026-09-16T20:32:22.256Z",
-  "environment": "production",
-  "securityLevel": "high-airgap",
-  "assets": {
-    "index.html": "sha256-bad4e6df44ddd87a6306b24f2e3e32881dc38bc59ba28af422fcc0ff340d9ccb",
-    "style.css": "sha256-cff3a24f8b83187b89ade39e0dfad4fd0722bb713fa5b511982a2caa08a35ede",
-    "app.js": "sha256-26ff453f3d27ba352cf691f632b739033b6e82265c897118683eddfd4ab08f5b",
-    "sw.js": "sha256-7d4a5ea1015113d212b78e3e69693497c56dd16ca324f9baebd931d282e02ae6",
-    "manifest.webmanifest": "sha256-e9f2f2b0a49fab166fa9d658644e8c8c59eeefe899fc38ac48ee330cb2a5addb"
+  "application": "Peekaboo",
+  "generated_at": "2026-09-16T20:40:06.368Z",
+  "hashes": {
+    "index.html": "sha256-i0IaqcNh25XjreSnYxqg16+LP79Jp8rO/8JY1aQmoKk=",
+    "style.css": "sha256-z/OiT4uDGHuJreOeDfrU/Qciu3E/pbURmCosqgijXt4=",
+    "app.js": "sha256-cag/2RaYigwES0ZJ9fNY4Oqf3L0kCHzJ1twrIhp+bdE=",
+    "sw.js": "sha256-0WnDr8+ziHQ9zXwcaqm0Eq2E5xGwGLcuIDfqHOeqofs=",
+    "manifest.webmanifest": "sha256-ssFWSyp4uyJQrjhDFhjLyk3/ZEp2ch32jyPgjzG9j84="
   }
 }

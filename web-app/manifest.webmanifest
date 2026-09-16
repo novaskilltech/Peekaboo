@@ -1,6 +1,6 @@
 {
-  "name": "SifrLayer Pro — Zero-Knowledge Cipher",
-  "short_name": "SifrLayer",
+  "name": "Peekaboo — Zero-Knowledge Air-Gap Cipher",
+  "short_name": "Peekaboo",
   "description": "Application de chiffrement local de bout en bout 100% hors-ligne (Air-Gap).",
   "start_url": "./index.html",
   "display": "standalone",

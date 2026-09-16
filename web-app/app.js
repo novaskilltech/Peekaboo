@@ -1,12 +1,12 @@
 // ==========================================================================
-// SIFRLAYER PRO — MOTEUR CRYPTOGRAPHIQUE ZERO-KNOWLEDGE DURCI
+// PEEKABOO — MOTEUR CRYPTOGRAPHIQUE ZERO-KNOWLEDGE DURCI
 // Architecture: IndexedDB CryptoKey non exportable, Zéro plaintext persistant,
 // Protection XSS (zéro innerHTML), Audit d'intégrité et PWA Offline Air-Gap.
 // ==========================================================================
 
 const PROTOCOL_PREFIX = "🔐SL1:";
 const INVITE_PREFIX = "🔑SIFR-INVITE:";
-const DB_NAME = "SifrLayerSecurityVault";
+const DB_NAME = "PeekabooSecurityVault";
 const DB_VERSION = 1;
 const STORE_KEYS = "crypto_keys";
 const STORE_CONTACTS = "contacts";
@@ -730,7 +730,7 @@ function applyUpdateNow() {
 window.addEventListener("DOMContentLoaded", async () => {
   // 1. Vérification contexte sécurisé
   if (!window.isSecureContext && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
-    alert("ERREUR CRITIQUE DE SÉCURITÉ :\nSifrLayer requiert un contexte sécurisé HTTPS pour activer les fonctions cryptographiques.");
+    alert("ERREUR CRITIQUE DE SÉCURITÉ :\nPeekaboo requiert un contexte sécurisé HTTPS pour activer les fonctions cryptographiques.");
     return;
   }
 
