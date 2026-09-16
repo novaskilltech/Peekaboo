@@ -773,3 +773,40 @@ body.wa-theme {
 .wa-nav-item.active .wa-nav-icon {
   filter: drop-shadow(0 0 6px rgba(37, 211, 102, 0.6));
 }
+
+
+/* ICÔNES VECTORIELLES SUR-MESURE (SANS EMOJI) */
+.wa-nav-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.nav-svg-icon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--wa-text-secondary);
+  color: var(--wa-text-secondary);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wa-nav-item:hover .nav-svg-icon {
+  color: var(--wa-text-primary);
+  stroke: var(--wa-text-primary);
+}
+
+.wa-nav-item.active .nav-svg-icon {
+  color: var(--wa-green-accent);
+  stroke: var(--wa-green-accent);
+  filter: drop-shadow(0 0 6px rgba(37, 211, 102, 0.7));
+  transform: translateY(-2px);
+}
+
+.wa-nav-item.active .wa-nav-label {
+  color: var(--wa-green-accent);
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(37, 211, 102, 0.4);
+}

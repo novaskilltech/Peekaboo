@@ -1,10 +1,10 @@
 {
   "version": "1.4.2",
   "application": "Peekaboo WhatsApp Stealth (Anonymous)",
-  "generated_at": "2026-09-16T20:48:05.663Z",
+  "generated_at": "2026-09-16T20:51:45.544Z",
   "hashes": {
-    "index.html": "sha256-hLHPC0ZwfM0WBDxjpygmg6l6RtMywhg9BhdjXSIxX0w=",
-    "style.css": "sha256-Nn3HuAxi2Uks6ABubgUnpPfwrzI9U5wKSOM5XWmdb8Q=",
+    "index.html": "sha256-MaWqhplFUzRmr7Kfc2nmAdVddf8ACrlIJkI3HDLJONg=",
+    "style.css": "sha256-7jAqJFuIlM/P1l0TV0WDk3pn3Zf7eYEzZzfi+cbgig8=",
     "app.js": "sha256-rhuHIkdNKxfIpl1RrGKzQnew8PmamV0cwd25SWuCBvY=",
     "sw.js": "sha256-0WnDr8+ziHQ9zXwcaqm0Eq2E5xGwGLcuIDfqHOeqofs=",
     "manifest.webmanifest": "sha256-95uCvCYn8YveQtco1xnIYD8p+DzChcnyYp6fIklrVQU=",

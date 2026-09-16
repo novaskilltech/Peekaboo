@@ -40,7 +40,7 @@
 
       <div class="hero-cta-box">
         <button id="btn-hero-launch" class="btn-wa-action btn-pulse">
-          <span>⚡ Ouvrir Peekaboo (WhatsApp Stealth)</span>
+          Ouvrir Peekaboo (WhatsApp Stealth)
         </button>
       </div>
 
@@ -184,7 +184,7 @@
 
           <!-- Bouton Chiffrer Style WhatsApp Action -->
           <button class="btn-wa-action" id="btn-encrypt">
-            <span class="btn-icon">🔐</span> Chiffrer & Copier pour WhatsApp
+            <span class="btn-icon"></span> Chiffrer & Copier pour WhatsApp
           </button>
 
           <div id="encrypt-notification" class="wa-notification"></div>
@@ -207,7 +207,7 @@
       <div id="tab-decrypt" class="wa-tab-pane hidden">
         <div class="wa-chat-canvas">
           <div class="wa-pane-header">
-            <span>🔓 Lecteur de Message Reçu</span>
+            <span>Lecteur de Message Reçu</span>
             <button class="btn-wa-danger" id="btn-wipe-memory">🧹 Effacer</button>
           </div>
 
@@ -218,7 +218,7 @@
 
           <div class="wa-btn-row">
             <button class="btn-wa-action" id="btn-decrypt">
-              <span>🔓</span> Déchiffrer
+              Déchiffrer
             </button>
             <button class="btn-wa-secondary btn-auto" id="btn-paste">
               📋 Coller
@@ -260,7 +260,7 @@
               <textarea id="contact-invite" class="wa-textarea small" placeholder="Collez ici l'invitation (🔑SIFR-INVITE:...)"></textarea>
             </div>
             <button class="btn-wa-action" id="btn-add-contact">
-              <span>👥</span> Enregistrer le contact
+              Enregistrer le contact
             </button>
             <div id="contact-notification" class="wa-notification"></div>
           </div>
@@ -313,22 +313,55 @@
     <!-- ================================================================= -->
     <nav class="wa-bottom-nav">
       <button class="wa-nav-item active" id="tab-btn-encrypt">
-        <span class="wa-nav-icon">💬</span>
+        <span class="wa-nav-icon-box"><svg class="nav-svg-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bulle WhatsApp -->
+  <path d="M12 3C7.03 3 3 7.03 3 12C3 13.8 3.53 15.48 4.45 16.9L3.5 21L7.75 19.9C9.07 20.6 10.5 21 12 21C16.97 21 21 16.97 21 12C21 7.03 16.97 3 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Moustache Anonymous stylisée au centre de la bulle -->
+  <path d="M8.5 12C10 11.5 11 12.5 12 13C13 12.5 14 11.5 15.5 12C14.8 13.2 13.5 14 12 14.2C10.5 14 9.2 13.2 8.5 12Z" fill="currentColor"/>
+  <!-- Fente masque sourcil -->
+  <path d="M9 10C9.8 9.2 10.8 9.5 11 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M15 10C14.2 9.2 13.2 9.5 13 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+</svg></span>
         <span class="wa-nav-label">Chiffrer</span>
       </button>
 
       <button class="wa-nav-item" id="tab-btn-decrypt">
-        <span class="wa-nav-icon">🔓</span>
+        <span class="wa-nav-icon-box"><svg class="nav-svg-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Anse de cadenas déverrouillé / inclinée -->
+  <path d="M8 10V6.5C8 4.57 9.57 3 11.5 3C13.43 3 15 4.57 15 6.5V7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Corps du cadenas biseauté façon masque / armure -->
+  <rect x="5" y="10" width="14" height="11" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+  <!-- Fente de serrure cyber / oeil Anonymous -->
+  <circle cx="12" cy="14.5" r="1.5" fill="currentColor"/>
+  <path d="M12 16V18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Ligne de scan furtif -->
+  <line x1="8" y1="13" x2="9" y2="13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="15" y1="13" x2="16" y2="13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+</svg></span>
         <span class="wa-nav-label">Déchiffrer</span>
       </button>
 
       <button class="wa-nav-item" id="tab-btn-contacts">
-        <span class="wa-nav-icon">👥</span>
+        <span class="wa-nav-icon-box"><svg class="nav-svg-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Silhouette arrière -->
+  <path d="M16 19C16 16.5 14 15 11.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <circle cx="15.5" cy="8" r="3" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+  <!-- Profil principal Anonymous -->
+  <circle cx="9" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+  <path d="M3.5 19C3.5 15.5 6 14 9 14C12 14 14.5 15.5 14.5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Moustache furtive mini -->
+  <path d="M7.5 9.2C8.5 8.8 9.5 8.8 10.5 9.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+</svg></span>
         <span class="wa-nav-label">Contacts</span>
       </button>
 
       <button class="wa-nav-item" id="tab-btn-security">
-        <span class="wa-nav-icon">🛡️</span>
+        <span class="wa-nav-icon-box"><svg class="nav-svg-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Contour Bouclier Tactique biseauté -->
+  <path d="M12 2.5L19.5 5.5V11.5C19.5 16.5 16.3 20.8 12 22C7.7 20.8 4.5 16.5 4.5 11.5V5.5L12 2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+  <!-- Cœur cryptographique / Chiffre en V -->
+  <path d="M9 11.5L11 13.5L15 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
         <span class="wa-nav-label">Sécurité</span>
       </button>
     </nav>
