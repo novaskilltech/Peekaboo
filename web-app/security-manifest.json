@@ -1,12 +1,13 @@
 {
   "version": "1.4.2",
-  "application": "Peekaboo",
-  "generated_at": "2026-09-16T20:40:06.368Z",
+  "application": "Peekaboo Pro",
+  "generated_at": "2026-09-16T20:46:51.743Z",
   "hashes": {
-    "index.html": "sha256-i0IaqcNh25XjreSnYxqg16+LP79Jp8rO/8JY1aQmoKk=",
-    "style.css": "sha256-z/OiT4uDGHuJreOeDfrU/Qciu3E/pbURmCosqgijXt4=",
-    "app.js": "sha256-cag/2RaYigwES0ZJ9fNY4Oqf3L0kCHzJ1twrIhp+bdE=",
+    "index.html": "sha256-nkh6unl2BFFGVG6t+k1Q3E7Or9OPg5XONabEQMPjhc8=",
+    "style.css": "sha256-SP3Ey1N5QGj5clrluWNuP8NIwX9/IjXlfa+nxqqzxtM=",
+    "app.js": "sha256-rhuHIkdNKxfIpl1RrGKzQnew8PmamV0cwd25SWuCBvY=",
     "sw.js": "sha256-0WnDr8+ziHQ9zXwcaqm0Eq2E5xGwGLcuIDfqHOeqofs=",
-    "manifest.webmanifest": "sha256-ssFWSyp4uyJQrjhDFhjLyk3/ZEp2ch32jyPgjzG9j84="
+    "manifest.webmanifest": "sha256-ssFWSyp4uyJQrjhDFhjLyk3/ZEp2ch32jyPgjzG9j84=",
+    "logo.svg": "sha256-Dd1GYSlEF5xC7e/hDTKIKaROtWb35h2IiokbVMVsA04="
   }
 }

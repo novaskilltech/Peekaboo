@@ -3,13 +3,253 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peekaboo — Messagerie Zero-Knowledge</title>
+  <title>Peekaboo — Zero-Knowledge Air-Gap Cipher</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#080a0f">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <meta name="theme-color" content="#030712">
+  <meta name="description" content="Chiffrement local de bout en bout de grade militaire. Vos messages restent invisibles aux tiers, opérateurs et GAFAM. 0 Serveur. 100% Hors-ligne.">
 </head>
 <body>
-  <div class="container">
+
+  <!-- Navigation Bar Flottante Glassmorphism -->
+  <nav class="glass-nav">
+    <div class="nav-container">
+      <div class="nav-brand" id="nav-brand-logo">
+        <img src="logo.svg" alt="Peekaboo Logo" class="nav-logo-img">
+        <span class="nav-brand-title">PEEKA<span>BOO</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Technologie</a>
+        <a href="#bento" class="nav-link">Architecture</a>
+        <a href="#pricing" class="nav-link">Offres</a>
+        <button id="btn-toggle-app" class="btn-3d-nav">
+          <span class="btn-icon">⚡</span> Ouvrir le Coffre-Fort
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================================================================= -->
+  <!-- SECTION 1 : LANDING PAGE COMMERCIALE (HERO & BENTO GRID 3D)       -->
+  <!-- ================================================================= -->
+  <main id="landing-section" class="landing-wrapper">
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-badge">
+        <span class="pulsing-dot"></span>
+        <span>ZERO-KNOWLEDGE AIR-GAP PROTOCOL // MILITARY GRADE</span>
+      </div>
+
+      <h1 class="hero-title">
+        Now you see it.<br>
+        <span class="text-gradient">Now you don't.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Le premier bouclier cryptographique local pour WhatsApp, Telegram & SMS.
+        Vos messages sont chiffrés <strong>directement dans la mémoire de votre appareil</strong> avant d'être expédiés.
+        Aucun serveur, aucun cloud, zéro interception possible.
+      </p>
+
+      <div class="hero-actions">
+        <button id="btn-hero-launch" class="btn-3d-primary btn-large">
+          <span class="btn-text">Lancer Peekaboo Gratuitement</span>
+          <span class="btn-glow"></span>
+        </button>
+        <a href="#bento" class="btn-3d-glass btn-large">
+          <span>Découvrir l'Architecture 3D</span>
+        </a>
+      </div>
+
+      <!-- Hero 3D Interactive Card Showcase -->
+      <div class="hero-preview-wrapper">
+        <div class="hero-3d-card">
+          <div class="card-glow-reflection"></div>
+          <div class="preview-header">
+            <div class="preview-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="preview-status">🔐 PEEKABOO VAULT v1.4.2 — ECDH P-256 / AES-GCM-256</div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-row">
+              <span class="p-tag">CLAIR LOCAL :</span>
+              <span class="p-val">"Rendez-vous à 22h00 pour finaliser le contrat secret."</span>
+            </div>
+            <div class="preview-divider">
+              <span class="divider-icon">⚡ CHIFFREMENT ÉPHÉMÈRE EN MÉMOIRE RAM ⚡</span>
+            </div>
+            <div class="preview-row cipher">
+              <span class="p-tag">PAYLOAD INTERCEPTÉ :</span>
+              <span class="p-val cipher-text">🔐SL1:uH9x_8Wq9K...47sQ_k9X2mQ== (ILLISIBLE POUR WHATSAPP/CLOUD)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Grid Section -->
+    <section id="bento" class="bento-section">
+      <div class="section-header">
+        <span class="section-tag">ARCHITECTURE BENTO 3D</span>
+        <h2 class="section-title">Pourquoi Peekaboo écrase la concurrence</h2>
+        <p class="section-desc">Une sécurité absolue, sans compromis sur l'expérience utilisateur.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Bento Card 1 (Large) -->
+        <div class="bento-card bento-wide card-glass-3d">
+          <div class="card-badge-neon">0 SERVEUR // AIR-GAP</div>
+          <div class="bento-icon-box">🛡️</div>
+          <h3>Aucun stockage cloud. Jamais.</h3>
+          <p>
+            Contrairement aux messageries traditionnelles qui détiennent des clés maîtresses ou des métadonnées sur leurs clusters,
+            Peekaboo opère <strong>100% hors-ligne dans votre navigateur</strong>. Vos clés privées utilisent Web Crypto API avec le flag non-exportable.
+          </p>
+          <div class="bento-metric">
+            <span class="metric-num">0.00%</span>
+            <span class="metric-label">de données transmises à nos serveurs</span>
+          </div>
+        </div>
+
+        <!-- Bento Card 2 -->
+        <div class="bento-card card-glass-3d">
+          <div class="card-badge-neon">TRANSPORTS HOSTILES</div>
+          <div class="bento-icon-box">💬</div>
+          <h3>Compatible WhatsApp, Telegram & SMS</h3>
+          <p>
+            Inutile de convaincre vos contacts d'installer une nouvelle application compliquée. Échangez des ciphertexts sécurisés via n'importe quel canal existant.
+          </p>
+        </div>
+
+        <!-- Bento Card 3 -->
+        <div class="bento-card card-glass-3d">
+          <div class="card-badge-neon">AUTO-PURGE</div>
+          <div class="bento-icon-box">⏳</div>
+          <h3>Verrouillage RAM Dynamique</h3>
+          <p>
+            Minuteur d'inactivité et purge instantanée du texte déchiffré. Si vous fermez l'onglet ou quittez l'écran des yeux, les messages s'évaporent de la mémoire vive.
+          </p>
+        </div>
+
+        <!-- Bento Card 4 (Medium) -->
+        <div class="bento-card card-glass-3d">
+          <div class="card-badge-neon">ANTI-INTERCEPTION</div>
+          <div class="bento-icon-box">🔑</div>
+          <h3>ECDH P-256 Asymétrique & AEAD</h3>
+          <p>
+            Chaque message intègre un vecteur d'initialisation unique (IV 96-bit) et un tag d'authentification MAC (128-bit) rendant toute modification ou rejeu immédiatement détectable.
+          </p>
+        </div>
+
+        <!-- Bento Card 5 -->
+        <div class="bento-card card-glass-3d">
+          <div class="card-badge-neon">MODE AVION</div>
+          <div class="bento-icon-box">✈️</div>
+          <h3>PWA Fonctionnelle Hors-Réseau</h3>
+          <p>
+            Installez Peekaboo comme application native sur iOS, Android, Mac ou Windows. Fonctionne même en mode avion dans un bunker ou en vol.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Commercial Section -->
+    <section id="pricing" class="pricing-section">
+      <div class="section-header">
+        <span class="section-tag">TARIFICATION SAAS // ACCÈS INSTANTANÉ</span>
+        <h2 class="section-title">Investissez dans votre confidentialité</h2>
+        <p class="section-desc">Choisissez l'offre adaptée à vos besoins stratégiques et professionnels.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Tier 1 : Starter -->
+        <div class="pricing-card card-glass-3d">
+          <div class="pricing-header">
+            <h3>Édition Découverte</h3>
+            <div class="price">0€ <span>/ à vie</span></div>
+            <p class="price-desc">Pour tester la puissance du protocole Peekaboo.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Chiffrement ECDH P-256 local</li>
+            <li>✓ Carnet jusqu'à 3 contacts vérifiés</li>
+            <li>✓ PWA Air-Gap hors-ligne</li>
+            <li>✓ 0 Télémétrie, 0 Publicité</li>
+          </ul>
+          <button class="btn-3d-glass btn-full btn-start-free">Commencer Maintenant</button>
+        </div>
+
+        <!-- Tier 2 : Pro (Featured) -->
+        <div class="pricing-card card-glass-3d featured">
+          <div class="popular-ribbon">LE PLUS PRISÉ // PRO</div>
+          <div class="pricing-header">
+            <h3>Licence Peekaboo PRO</h3>
+            <div class="price">49€ <span>/ paiement unique</span></div>
+            <p class="price-desc">La liberté absolue pour dirigeants, journalistes et particuliers avisés.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Contacts illimités avec fingerprinting</li>
+            <li>✓ Purge mémoire ultra-rapide (10 sec / 1 min)</li>
+            <li>✓ Double clé de secours chiffrée</li>
+            <li>✓ Mode stéganographie & brouillage</li>
+            <li>✓ Accès prioritaire aux futures versions</li>
+          </ul>
+          <button class="btn-3d-primary btn-full btn-start-free">
+            <span class="btn-text">Obtenir la Licence PRO</span>
+            <span class="btn-glow"></span>
+          </button>
+        </div>
+
+        <!-- Tier 3 : Enterprise -->
+        <div class="pricing-card card-glass-3d">
+          <div class="pricing-header">
+            <h3>Équipe & Enterprise</h3>
+            <div class="price">Sur mesure</div>
+            <p class="price-desc">Déploiement sur serveur d'entreprise souverain dédié.</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✓ Déploiement on-premise sous votre domaine</li>
+            <li>✓ Support de gestion de flotte sécurisée</li>
+            <li>✓ Audit cryptographique personnalisé</li>
+            <li>✓ SLA d'assistance 24/7</li>
+          </ul>
+          <button class="btn-3d-glass btn-full" onclick="alert('Contactez notre équipe : enterprise@novaskill.tech')">Contacter l'Équipe</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Commercial -->
+    <footer class="commercial-footer">
+      <div class="footer-brand">
+        <img src="logo.svg" alt="Peekaboo Logo" class="footer-logo">
+        <span>PEEKABOO PRO // ZERO-KNOWLEDGE AIR-GAP</span>
+      </div>
+      <p>© 2026 Peekaboo Technologies. Tous droits réservés. Chiffrement souverain local sans tiers de confiance.</p>
+    </footer>
+
+  </main>
+
+
+  <!-- ================================================================= -->
+  <!-- SECTION 2 : CONSOLE SÉCURISÉE DE CHIFFREMENT (BENTO GLASS 3D)     -->
+  <!-- ================================================================= -->
+  <div id="app-section" class="container app-hidden">
+    
+    <!-- Bouton de retour vers la landing page -->
+    <div class="app-top-bar">
+      <button id="btn-back-to-landing" class="btn-back">
+        ← Retour à la présentation
+      </button>
+      <div class="app-vault-status">
+        <span class="pulsing-dot-green"></span>
+        <span>COFFRE-FORT LOCAL ACTIF</span>
+      </div>
+    </div>
+
     <!-- Bannière de mise à jour explicite et contrôlée -->
     <div id="update-banner" class="notification hidden" style="background: rgba(0, 240, 255, 0.15); border: 1px solid var(--neon-cyan); border-left: 4px solid var(--neon-cyan); margin-bottom: 8px;">
       <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
@@ -23,18 +263,18 @@
       </div>
     </div>
 
-    <header>
+    <header class="app-header-bento">
       <div class="brand">
-        <span class="brand-icon">🙈</span>
+        <img src="logo.svg" alt="Peekaboo Logo" class="app-header-logo">
         <div>
           <h1>PEEKA<span>BOO</span> PRO</h1>
-          <div class="helper-text">NOW YOU SEE IT, NOW YOU DON'T // ZERO-KNOWLEDGE AIR-GAP</div>
+          <div class="helper-text">AIR-GAP VAULT // ZERO-KNOWLEDGE LOCAL ENGINE</div>
         </div>
       </div>
-      <span class="badge-offline">AIR-GAP OPERATIONAL</span>
+      <span class="badge-offline">AIR-GAP ACTIF</span>
     </header>
 
-    <div class="tabs" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="tabs">
       <button class="tab-btn active" id="tab-btn-encrypt">✍️ Chiffrer</button>
       <button class="tab-btn" id="tab-btn-decrypt">🔓 Déchiffrer</button>
       <button class="tab-btn" id="tab-btn-contacts">👥 Contacts</button>
@@ -42,7 +282,7 @@
     </div>
 
     <!-- ONGLET 1 : CHIFFREMENT -->
-    <div id="tab-encrypt" class="card">
+    <div id="tab-encrypt" class="card card-glass-3d">
       <div class="card-title">
         <span>Rédaction sécurisée</span>
         <span class="sub-badge">Protocole SifrLayer v1</span>
@@ -61,7 +301,7 @@
         <textarea id="plaintext-input" placeholder="Écrivez votre message privé ici..."></textarea>
       </div>
 
-      <button class="btn" id="btn-encrypt">
+      <button class="btn btn-3d-primary" id="btn-encrypt">
         <span>🔐</span> Chiffrer et Copier le message
       </button>
 
@@ -77,7 +317,7 @@
     </div>
 
     <!-- ONGLET 2 : DÉCHIFFREMENT -->
-    <div id="tab-decrypt" class="card hidden">
+    <div id="tab-decrypt" class="card card-glass-3d hidden">
       <div class="card-title">
         <span>Lecteur sécurisé</span>
         <button class="btn-danger btn-small" id="btn-wipe-memory">🧹 Effacer la mémoire</button>
@@ -89,7 +329,7 @@
       </div>
 
       <div class="row-btn">
-        <button class="btn" id="btn-decrypt">
+        <button class="btn btn-3d-primary" id="btn-decrypt">
           <span>🔓</span> Déchiffrer le message
         </button>
         <button class="btn btn-secondary btn-auto" id="btn-paste">
@@ -109,7 +349,7 @@
     </div>
 
     <!-- ONGLET 3 : CONTACTS & MON IDENTITÉ -->
-    <div id="tab-contacts" class="card hidden">
+    <div id="tab-contacts" class="card card-glass-3d hidden">
       <div class="card-title">Mon Identité Cryptographique</div>
       
       <div class="identity-box">
@@ -135,7 +375,7 @@
         <textarea id="contact-invite" placeholder="Collez l'invitation reçue de votre correspondant..." class="textarea-small"></textarea>
       </div>
 
-      <button class="btn" id="btn-add-contact">
+      <button class="btn btn-3d-primary" id="btn-add-contact">
         <span>👥</span> Valider et Ajouter le contact
       </button>
 
@@ -146,7 +386,7 @@
     </div>
 
     <!-- ONGLET 4 : PARAMÈTRES & VÉRIFICATION D'INSTALLATION -->
-    <div id="tab-security" class="card hidden">
+    <div id="tab-security" class="card card-glass-3d hidden">
       <div class="card-title">
         <span>Contrôle d'Intégrité & Sécurité</span>
         <span class="sub-badge">Vérification Réelle</span>
@@ -172,8 +412,8 @@
       <div class="identity-box">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-family: var(--font-mono); font-size: 0.8rem;">
           <div><span style="color: var(--text-muted);">Version :</span> <span id="sec-version" style="color: var(--neon-cyan);">1.4.2</span></div>
-          <div><span style="color: var(--text-muted);">Build ID :</span> <span id="sec-build" style="color: var(--neon-cyan);">2026.09.16.2230</span></div>
-          <div><span style="color: var(--text-muted);">Commit Git :</span> <span id="sec-commit" style="color: var(--neon-cyan);">559b435</span></div>
+          <div><span style="color: var(--text-muted);">Build ID :</span> <span id="sec-build" style="color: var(--neon-cyan);">2026.09.16.2245</span></div>
+          <div><span style="color: var(--text-muted);">Commit Git :</span> <span id="sec-commit" style="color: var(--neon-cyan);">074ebf7</span></div>
           <div><span style="color: var(--text-muted);">Statut :</span> <span id="sec-env" style="color: var(--neon-emerald);">Air-Gap Strict</span></div>
         </div>
       </div>

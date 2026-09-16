@@ -808,6 +808,43 @@ window.addEventListener("DOMContentLoaded", async () => {
       resetAutoLockTimer();
     });
   }
+
+  // 5. Navigation fluide Landing Page <-> Console Cryptographique (Bento)
+  const landingSection = document.getElementById("landing-section");
+  const appSection = document.getElementById("app-section");
+  const btnToggleApp = document.getElementById("btn-toggle-app");
+  const btnHeroLaunch = document.getElementById("btn-hero-launch");
+  const btnBackToLanding = document.getElementById("btn-back-to-landing");
+  const navBrandLogo = document.getElementById("nav-brand-logo");
+  const startFreeBtns = document.querySelectorAll(".btn-start-free");
+
+  function openVault() {
+    if (landingSection && appSection) {
+      landingSection.style.opacity = "0";
+      landingSection.style.transform = "translateY(-15px)";
+      setTimeout(() => {
+        landingSection.classList.add("app-hidden");
+        appSection.classList.remove("app-hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 250);
+    }
+  }
+
+  function closeVault() {
+    if (landingSection && appSection) {
+      appSection.classList.add("app-hidden");
+      landingSection.classList.remove("app-hidden");
+      landingSection.style.opacity = "1";
+      landingSection.style.transform = "translateY(0)";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  if (btnToggleApp) btnToggleApp.addEventListener("click", openVault);
+  if (btnHeroLaunch) btnHeroLaunch.addEventListener("click", openVault);
+  if (btnBackToLanding) btnBackToLanding.addEventListener("click", closeVault);
+  if (navBrandLogo) navBrandLogo.addEventListener("click", closeVault);
+  startFreeBtns.forEach(b => b.addEventListener("click", openVault));
 });
 
 function showNotification(el, msg, type) {
