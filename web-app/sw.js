@@ -10,6 +10,8 @@ const ASSETS_TO_CACHE = [
   "./icon-192.svg",
   "./icon-512.svg",
   "./soundtrack.js",
+  "./og-image.svg",
+  "./twitter-image.svg",
   "./security-manifest.json"
 ];
 
