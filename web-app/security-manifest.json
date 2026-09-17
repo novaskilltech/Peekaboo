@@ -1,14 +1,14 @@
 {
-  "version": "1.4.4",
+  "version": "1.4.5",
   "application": "Peekaboo WhatsApp Stealth (Anonymous)",
   "author": "Nova Skill Tech",
   "copyright": "Nova Skill Tech 2026",
-  "generated_at": "2026-09-17T09:31:23.343Z",
+  "generated_at": "2026-09-17T10:11:55.221Z",
   "hashes": {
     "index.html": "sha256-gqmNF0Pk/H6t19MePHcMX6haQhfolIHD0OxLJAZHRx4=",
     "style.css": "sha256-UXMY3e1jL3HBPn9+LpXkg+YIbJh3YJbmOsTkVWbqjNU=",
     "app.js": "sha256-QqxndNBuvJcAG/NcuzfRZUuowXhhg+nt2A/YRzaF8bE=",
-    "sw.js": "sha256-c/6ugPXBH55mCNWBU5oGw1bi0WCPisE9G9hgrPOsT88=",
+    "sw.js": "sha256-oJ0uCys0ek1RGHMbQ0uZ6EH4zvFWrIoiZxANp7xK0rM=",
     "manifest.webmanifest": "sha256-95uCvCYn8YveQtco1xnIYD8p+DzChcnyYp6fIklrVQU=",
     "logo.svg": "sha256-msl1GQhwvkMWWmMbvH4jUCf1KbqIqW7/DlZxI93Jt9s=",
     "icon-192.svg": "sha256-msl1GQhwvkMWWmMbvH4jUCf1KbqIqW7/DlZxI93Jt9s=",

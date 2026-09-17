@@ -1,5 +1,5 @@
 // Peekaboo — Service Worker Tactique (Air-Gap PWA)
-const CACHE_NAME = "peekaboo-cache-v1.4.2";
+const CACHE_NAME = "peekaboo-cache-v1.4.5";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
@@ -39,18 +39,36 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Interception des requêtes : Stratégie Cache-First pour garantir le mode Avion
+// Interception des requêtes : Network-First pour app.js et index.html si en ligne, Cache-First pour les assets statiques
 self.addEventListener("fetch", (event) => {
-  // Ignorer les schémas non supportés
   if (!event.request.url.startsWith("http")) return;
 
+  const url = new URL(event.request.url);
+  const isCodeAsset = url.pathname.endsWith("app.js") || url.pathname.endsWith("index.html") || url.pathname === "/";
+
+  if (isCodeAsset) {
+    // Si connecté, essayer de récupérer la version fraîche pour éviter le blocage du cache
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Autres assets (images, fonts, manifest) : Cache-First
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
         return cachedResponse;
       }
       return fetch(event.request).catch(() => {
-        // En cas de panne réseau complète (Mode Avion) sur une navigation HTML
         if (event.request.mode === "navigate") {
           return caches.match("./index.html");
         }
