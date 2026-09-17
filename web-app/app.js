@@ -375,7 +375,7 @@ async function saveNewContactSecurely() {
     const contactRecord = {
       id: rawKeyBase64,
       name,
-      rawPublicKeyBase64,
+      rawPublicKeyBase64: rawKeyBase64,
       fingerprint,
       verified: true,
       updatedAt: Date.now()
