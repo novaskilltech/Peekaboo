@@ -845,6 +845,22 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (btnBackToLanding) btnBackToLanding.addEventListener("click", closeVault);
   if (navBrandLogo) navBrandLogo.addEventListener("click", closeVault);
   startFreeBtns.forEach(b => b.addEventListener("click", openVault));
+
+  // 6. Contrôle de la Bande-Son Cinématique d'Espionnage
+  const btnSoundtrack = document.getElementById("btn-soundtrack-toggle");
+  const soundtrackLabel = document.getElementById("soundtrack-label");
+  if (btnSoundtrack && window.peekabooSoundtrack) {
+    btnSoundtrack.addEventListener("click", () => {
+      const isPlaying = window.peekabooSoundtrack.toggle();
+      if (isPlaying) {
+        btnSoundtrack.classList.add("playing");
+        if (soundtrackLabel) soundtrackLabel.textContent = "Bande-Son Espionnage : ACTIVE";
+      } else {
+        btnSoundtrack.classList.remove("playing");
+        if (soundtrackLabel) soundtrackLabel.textContent = "Bande-Son Espionnage : OFF";
+      }
+    });
+  }
 });
 
 function showNotification(el, msg, type) {

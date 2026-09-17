@@ -1120,3 +1120,254 @@ body.wa-theme {
   font-size: 0.75rem;
   color: var(--wa-text-muted);
 }
+
+
+/* ==========================================================================
+   BANDE-SON CINÉMATIQUE D'ESPIONNAGE (AUDIO TOGGLE)
+   ========================================================================== */
+.soundtrack-control-wrapper {
+  margin-bottom: 8px;
+}
+
+.soundtrack-btn {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--wa-green-primary);
+  border-radius: 9999px;
+  color: var(--wa-green-accent);
+  padding: 8px 18px;
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0, 168, 132, 0.25);
+  transition: all 0.3s ease;
+}
+
+.soundtrack-btn:hover {
+  background: rgba(0, 168, 132, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.soundtrack-btn.playing {
+  border-color: var(--anon-cyan);
+  color: var(--anon-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.audio-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.audio-bars .bar {
+  width: 3px;
+  background-color: var(--wa-green-accent);
+  border-radius: 2px;
+  height: 4px;
+  transition: height 0.2s;
+}
+
+.soundtrack-btn.playing .audio-bars .b1 {
+  animation: barPulse1 0.7s infinite alternate ease-in-out;
+  background-color: var(--anon-cyan);
+}
+.soundtrack-btn.playing .audio-bars .b2 {
+  animation: barPulse2 0.5s infinite alternate ease-in-out;
+  background-color: var(--anon-cyan);
+}
+.soundtrack-btn.playing .audio-bars .b3 {
+  animation: barPulse3 0.9s infinite alternate ease-in-out;
+  background-color: var(--anon-cyan);
+}
+
+@keyframes barPulse1 { from { height: 4px; } to { height: 14px; } }
+@keyframes barPulse2 { from { height: 12px; } to { height: 3px; } }
+@keyframes barPulse3 { from { height: 6px; } to { height: 13px; } }
+
+/* ==========================================================================
+   RETOURNEMENT 360 DEG ET BRUME / EFFET DE BROUILLARD MYSTÉRIEUX
+   ========================================================================== */
+.flip-card-360-container {
+  perspective: 1600px;
+  position: relative;
+  width: 100%;
+}
+
+.flip-card-inner {
+  transition: transform 1.25s cubic-bezier(0.2, 0.85, 0.25, 1), box-shadow 1.25s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Survol : Rotation complète à 360 degrés sur l'axe Y */
+.flip-card-360-container:hover .flip-card-inner {
+  transform: rotateY(360deg);
+  box-shadow: 0 25px 60px rgba(0, 240, 255, 0.25), 0 0 30px rgba(37, 211, 102, 0.3);
+}
+
+.flip-hint-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--anon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 6px;
+  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.rotate-icon {
+  font-size: 0.85rem;
+  animation: rotateSpin 4s linear infinite;
+}
+
+@keyframes rotateSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* CALQUE D'EFFET DE BRUME / MIST CINÉMATIQUE */
+.mist-fog-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 18px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.flip-card-360-container:hover .mist-fog-layer {
+  opacity: 1;
+}
+
+.smoke-particle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(35px);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.smoke-particle.p1 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.25) 0%, transparent 70%);
+  top: -40px;
+  left: -40px;
+  animation: smokeDrift1 6s infinite alternate ease-in-out;
+}
+
+.smoke-particle.p2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(37, 211, 102, 0.2) 0%, transparent 70%);
+  bottom: -60px;
+  right: -50px;
+  animation: smokeDrift2 7s infinite alternate ease-in-out;
+}
+
+.smoke-particle.p3 {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.18) 0%, transparent 70%);
+  top: 40%;
+  left: 30%;
+  animation: smokeDrift3 5s infinite alternate ease-in-out;
+}
+
+@keyframes smokeDrift1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(60px, 40px) scale(1.3); }
+}
+
+@keyframes smokeDrift2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-50px, -30px) scale(1.2); }
+}
+
+@keyframes smokeDrift3 {
+  0% { transform: translate(0, 0) scale(0.8); opacity: 0.3; }
+  100% { transform: translate(30px, -40px) scale(1.4); opacity: 0.7; }
+}
+
+/* ==========================================================================
+   GRANDES ILLUSTRATIONS VECTORIELLES ORIGINALE (STYLE IMAGE / TABLEAU)
+   ========================================================================== */
+.big-illu-container {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: rgba(3, 7, 18, 0.6);
+  border: 1px solid var(--wa-border);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.5);
+}
+
+.big-illu-container.legit-illu {
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.15);
+}
+
+.big-illu-container.abuse-illu {
+  border-color: rgba(244, 63, 94, 0.3);
+  box-shadow: inset 0 0 30px rgba(244, 63, 94, 0.15);
+}
+
+.big-illu-container svg {
+  max-height: 110px;
+  transition: transform 0.4s ease;
+}
+
+.manifesto-box:hover .big-illu-container svg {
+  transform: scale(1.08);
+}
+
+/* BENTO GRANDES ILLUSTRATIONS */
+.card-flip-bento {
+  transition: transform 0.8s cubic-bezier(0.2, 0.85, 0.25, 1), box-shadow 0.8s ease;
+}
+
+.card-flip-bento:hover {
+  transform: rotateY(360deg) translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 168, 132, 0.25);
+}
+
+.bento-big-illu {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  background: rgba(3, 7, 18, 0.4);
+  border-radius: 10px;
+  border: 1px solid var(--wa-border);
+}
+
+.bento-big-illu svg {
+  max-height: 70px;
+  transition: transform 0.3s ease;
+}
+
+.card-flip-bento:hover .bento-big-illu svg {
+  transform: scale(1.1);
+}

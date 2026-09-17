@@ -1,17 +1,18 @@
 {
-  "version": "1.4.2",
+  "version": "1.4.3",
   "application": "Peekaboo WhatsApp Stealth (Anonymous)",
   "author": "Nova Skill Tech",
   "copyright": "Nova Skill Tech 2026",
-  "generated_at": "2026-09-16T21:16:55.088Z",
+  "generated_at": "2026-09-17T08:59:32.983Z",
   "hashes": {
-    "index.html": "sha256-MYfKMEWSIG1caRrVQtYip+BVTO9/8e2a+rtKomoH8tw=",
-    "style.css": "sha256-26+ckXs6d61ywLXPU1VQQWjhpe3tOnYX53Dy4q0kJwU=",
-    "app.js": "sha256-rhuHIkdNKxfIpl1RrGKzQnew8PmamV0cwd25SWuCBvY=",
-    "sw.js": "sha256-0WnDr8+ziHQ9zXwcaqm0Eq2E5xGwGLcuIDfqHOeqofs=",
+    "index.html": "sha256-gqmNF0Pk/H6t19MePHcMX6haQhfolIHD0OxLJAZHRx4=",
+    "style.css": "sha256-UXMY3e1jL3HBPn9+LpXkg+YIbJh3YJbmOsTkVWbqjNU=",
+    "app.js": "sha256-m1FvQtHz18otrZZR8N74L/mWg5zGwIXXEynBRq7pm2g=",
+    "sw.js": "sha256-c/6ugPXBH55mCNWBU5oGw1bi0WCPisE9G9hgrPOsT88=",
     "manifest.webmanifest": "sha256-95uCvCYn8YveQtco1xnIYD8p+DzChcnyYp6fIklrVQU=",
     "logo.svg": "sha256-msl1GQhwvkMWWmMbvH4jUCf1KbqIqW7/DlZxI93Jt9s=",
     "icon-192.svg": "sha256-msl1GQhwvkMWWmMbvH4jUCf1KbqIqW7/DlZxI93Jt9s=",
-    "icon-512.svg": "sha256-msl1GQhwvkMWWmMbvH4jUCf1KbqIqW7/DlZxI93Jt9s="
+    "icon-512.svg": "sha256-msl1GQhwvkMWWmMbvH4jUCf1KbqIqW7/DlZxI93Jt9s=",
+    "soundtrack.js": "sha256-zKwp86To01h0LFaQCXr9l9/x15MhxOqRAQu9RiMqs3I="
   }
 }

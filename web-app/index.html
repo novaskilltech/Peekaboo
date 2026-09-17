@@ -20,6 +20,19 @@
     
     <!-- Hero Banner WhatsApp Stealth -->
     <section class="hero-section">
+      
+      <!-- Contrôle de Bande-Son Cinématique d'Espionnage -->
+      <div class="soundtrack-control-wrapper">
+        <button id="btn-soundtrack-toggle" class="soundtrack-btn" title="Activer l'ambiance sonore d'espionnage">
+          <span class="audio-bars">
+            <span class="bar b1"></span>
+            <span class="bar b2"></span>
+            <span class="bar b3"></span>
+          </span>
+          <span id="soundtrack-label">Bande-Son Espionnage : OFF</span>
+        </button>
+      </div>
+
       <div class="stealth-pill">
         <span class="pulsing-green"></span>
         <span>WHATSAPP STEALTH CLONE // AIR-GAP ANONYMOUS</span>
@@ -78,67 +91,157 @@
     <!-- SECTION MANIFESTE : LE "POURQUOI" DE PEEKABOO                     -->
     <!-- ================================================================= -->
     <section class="manifesto-section">
-      <div class="manifesto-card">
-        <div class="manifesto-header">
-          <span class="manifesto-badge">DÉCLARATION FONDATRICE // DROIT FONDAMENTAL</span>
-          <h2 class="manifesto-title">Pourquoi Peekaboo existe :<br><span class="wa-green-text">La fin de la présomption de culpabilité numérique</span></h2>
+      <div class="flip-card-360-container" id="manifesto-flip-container">
+        <!-- Calque d'effet de Brume / Fumée Cinématique -->
+        <div class="mist-fog-layer">
+          <div class="smoke-particle p1"></div>
+          <div class="smoke-particle p2"></div>
+          <div class="smoke-particle p3"></div>
         </div>
 
-        <div class="manifesto-content">
-          <p class="manifesto-lead">
-            <strong>Avoir des soupçons sur quelques individus ne donne à personne le droit d'espionner l'humanité entière.</strong>
-          </p>
-
-          <div class="manifesto-grid">
-            <div class="manifesto-box legit">
-              <div class="box-icon">⚖️</div>
-              <h4>La surveillance ciblée (Légitime)</h4>
-              <p>
-                Il est <strong>pleinement compréhensible et légitime</strong> que la justice surveille un individu précis lorsqu'il existe des <strong>preuves concrètes</strong>, des indices graves et un mandat légal proportionné.
-              </p>
+        <div class="manifesto-card flip-card-inner">
+          <div class="manifesto-header">
+            <div class="flip-hint-badge">
+              <span class="rotate-icon">↻</span> SURVOLER POUR RETOURNER À 360° // BRUME ACTIVE
             </div>
-
-            <div class="manifesto-box abuse">
-              <div class="box-icon">👁️</div>
-              <h4>La surveillance de masse (Inacceptable)</h4>
-              <p>
-                En revanche, aspirer l'intimité de <strong>milliards d'innocents</strong> sous prétexte de traquer d'éventuels coupables renverse un principe millénaire de notre civilisation : <em>l'état de droit et la liberté individuelle</em>.
-              </p>
-            </div>
+            <span class="manifesto-badge">DÉCLARATION FONDATRICE // DROIT FONDAMENTAL</span>
+            <h2 class="manifesto-title">Pourquoi Peekaboo existe :<br><span class="wa-green-text">La fin de la présomption de culpabilité numérique</span></h2>
           </div>
 
-          <div class="manifesto-quote-box">
-            <blockquote class="manifesto-quote">
-              « La vie privée n’est pas un privilège réservé à ceux qui ont des choses à cacher. C'est le sanctuaire qui permet à chacun d'exister, de penser, d'échanger et de préserver sa liberté sans être scruté en permanence. »
-            </blockquote>
-          </div>
+          <div class="manifesto-content">
+            <p class="manifesto-lead">
+              <strong>Avoir des soupçons sur quelques individus ne donne à personne le droit d'espionner l'humanité entière.</strong>
+            </p>
 
-          <div class="manifesto-pillars">
-            <div class="pillar-item">
-              <span class="pillar-num">01</span>
-              <div>
-                <h5>Chiffrement asymétrique inviolable dans votre poche</h5>
-                <p>Aucune porte dérobée (backdoor). Peekaboo utilise l'algorithme ECDH P-256 et AES-GCM 256 bits directement en mémoire vive locale (RAM).</p>
+            <div class="manifesto-grid">
+              <!-- CARTE 1 : SURVEILLANCE CIBLÉE LÉGITIME (GRANDE ILLUSTRATION) -->
+              <div class="manifesto-box legit">
+                <div class="big-illu-container legit-illu">
+  <svg viewBox="0 0 200 160" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="gradLegit" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="beamLegit" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8"/>
+        <stop offset="100%" stop-color="#00f0ff"/>
+      </linearGradient>
+    </defs>
+    <!-- Halo holographique -->
+    <circle cx="100" cy="80" r="70" fill="url(#gradLegit)"/>
+    <!-- Viseur / Cible Laser Ciblé (Mandat de Justice) -->
+    <circle cx="100" cy="80" r="58" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+    <circle cx="100" cy="80" r="38" fill="none" stroke="#00f0ff" stroke-width="1.8" opacity="0.8"/>
+    <line x1="100" y1="15" x2="100" y2="40" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="100" y1="120" x2="100" y2="145" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="35" y1="80" x2="60" y2="80" stroke="#38bdf8" stroke-width="2"/>
+    <line x1="140" y1="80" x2="165" y2="80" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- Balance de la Justice Stylisée Haute Définition -->
+    <path d="M100 45 V115" stroke="url(#beamLegit)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M75 115 H125" stroke="url(#beamLegit)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M60 58 H140" stroke="url(#beamLegit)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="100" cy="45" r="5" fill="#38bdf8"/>
+    
+    <!-- Plateaux de la balance -->
+    <!-- Gauche (Preuves) -->
+    <path d="M60 58 L45 85 M60 58 L75 85" stroke="#38bdf8" stroke-width="1.2" opacity="0.8"/>
+    <path d="M40 85 Q60 98 80 85 Z" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="1.5"/>
+    <!-- Droite (Mandat Légal) -->
+    <path d="M140 58 L125 85 M140 58 L155 85" stroke="#38bdf8" stroke-width="1.2" opacity="0.8"/>
+    <path d="M120 85 Q140 98 160 85 Z" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="1.5"/>
+
+    <!-- Point central de verrouillage de preuve -->
+    <circle cx="100" cy="80" r="4" fill="#00f0ff"/>
+    <text x="100" y="135" text-anchor="middle" fill="#38bdf8" font-family="'JetBrains Mono', monospace" font-size="8" letter-spacing="1">MANDAT JUDICIAIRE // PROPORTIONNÉ</text>
+  </svg>
+</div>
+                <h4>La surveillance ciblée (Légitime)</h4>
+                <p>
+                  Il est <strong>pleinement compréhensible et légitime</strong> que la justice surveille un individu précis lorsqu'il existe des <strong>preuves concrètes</strong>, des indices graves et un mandat légal proportionné.
+                </p>
+              </div>
+
+              <!-- CARTE 2 : SURVEILLANCE DE MASSE INACCEPTABLE (GRANDE ILLUSTRATION) -->
+              <div class="manifesto-box abuse">
+                <div class="big-illu-container abuse-illu">
+  <svg viewBox="0 0 200 160" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="gradAbuse" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#881337" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="beamAbuse" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f43f5e"/>
+        <stop offset="100%" stop-color="#e11d48"/>
+      </linearGradient>
+    </defs>
+    <!-- Halo rougeoyant d'alerte panoptique -->
+    <circle cx="100" cy="80" r="70" fill="url(#gradAbuse)"/>
+
+    <!-- Réseau d'espionnage / Faisceaux indiscriminés -->
+    <path d="M20 30 L100 80 L180 30" stroke="#f43f5e" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+    <path d="M20 130 L100 80 L180 130" stroke="#f43f5e" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+    <path d="M10 80 L190 80" stroke="#f43f5e" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+
+    <!-- L'Œil Panoptique Géant (Big Brother Global) -->
+    <path d="M30 80 Q100 25 170 80 Q100 135 30 80 Z" fill="rgba(15, 23, 42, 0.85)" stroke="url(#beamAbuse)" stroke-width="2.5"/>
+    
+    <!-- Anneau cybernétique et iris inquisiteur -->
+    <circle cx="100" cy="80" r="26" fill="#030712" stroke="#f43f5e" stroke-width="2"/>
+    <circle cx="100" cy="80" r="16" fill="#f43f5e" opacity="0.85"/>
+    <circle cx="100" cy="80" r="7" fill="#ffffff"/>
+    
+    <!-- Caméras d'aspiration de masse satellites -->
+    <circle cx="45" cy="45" r="4" fill="#f43f5e"/>
+    <circle cx="155" cy="45" r="4" fill="#f43f5e"/>
+    <circle cx="45" cy="115" r="4" fill="#f43f5e"/>
+    <circle cx="155" cy="115" r="4" fill="#f43f5e"/>
+    
+    <text x="100" y="135" text-anchor="middle" fill="#f43f5e" font-family="'JetBrains Mono', monospace" font-size="8" letter-spacing="1">ASPIRATION GLOBALE // DRAGNET</text>
+  </svg>
+</div>
+                <h4>La surveillance de masse (Inacceptable)</h4>
+                <p>
+                  En revanche, aspirer l'intimité de <strong>milliards d'innocents</strong> sous prétexte de traquer d'éventuels coupables renverse un principe millénaire de notre civilisation : <em>l'état de droit et la liberté individuelle</em>.
+                </p>
               </div>
             </div>
 
-            <div class="pillar-item">
-              <span class="pillar-num">02</span>
-              <div>
-                <h5>Immunité totale face aux algorithmes de profilage</h5>
-                <p>Même si WhatsApp ou un intermédiaire héberge vos messages, ils ne voient qu'une suite de caractères incohérents mathématiquement indéchiffrables.</p>
+            <div class="manifesto-quote-box">
+              <blockquote class="manifesto-quote">
+                « La vie privée n’est pas un privilège réservé à ceux qui ont des choses à cacher. C'est le sanctuaire qui permet à chacun d'exister, de penser, d'échanger et de préserver sa liberté sans être scruté en permanence. »
+              </blockquote>
+            </div>
+
+            <div class="manifesto-pillars">
+              <div class="pillar-item">
+                <span class="pillar-num">01</span>
+                <div>
+                  <h5>Chiffrement asymétrique inviolable dans votre poche</h5>
+                  <p>Aucune porte dérobée (backdoor). Peekaboo utilise l'algorithme ECDH P-256 et AES-GCM 256 bits directement en mémoire vive locale (RAM).</p>
+                </div>
+              </div>
+
+              <div class="pillar-item">
+                <span class="pillar-num">02</span>
+                <div>
+                  <h5>Immunité totale face aux algorithmes de profilage</h5>
+                  <p>Même si WhatsApp ou un intermédiaire héberge vos messages, ils ne voient qu'une suite de caractères incohérents mathématiquement indéchiffrables.</p>
+                </div>
+              </div>
+
+              <div class="pillar-item">
+                <span class="pillar-num">03</span>
+                <div>
+                  <h5>Un outil d'autodéfense pacifique et universel</h5>
+                  <p>Destiné aux citoyens, avocats, journalistes, médecins, entrepreneurs et à toute personne refusant le panoptique numérique moderne.</p>
+                </div>
               </div>
             </div>
 
-            <div class="pillar-item">
-              <span class="pillar-num">03</span>
-              <div>
-                <h5>Un outil d'autodéfense pacifique et universel</h5>
-                <p>Destiné aux citoyens, avocats, journalistes, médecins, entrepreneurs et à toute personne refusant le panoptique numérique moderne.</p>
-              </div>
-            </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -152,20 +255,52 @@
       </div>
 
       <div class="bento-grid">
-        <div class="bento-card card-wa-glass">
-          <div class="bento-icon">🎭</div>
+        <div class="bento-card card-wa-glass card-flip-bento">
+          <div class="bento-big-illu">
+  <svg viewBox="0 0 120 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <path d="M60 15 C35 15 15 32 15 54 C15 62 17.5 70 22 76 L18 90 L34 86 C39.5 89 45.5 91 52 91 C77 91 97 74 97 54 C97 32 77 15 60 15 Z" fill="rgba(37, 211, 102, 0.15)" stroke="#25d366" stroke-width="2"/>
+    <!-- Masque Anonymous miniature intégré -->
+    <path d="M42 46 C48 43 56 46 60 50 C64 46 72 43 78 46" stroke="#00f0ff" stroke-width="1.8" fill="none"/>
+    <circle cx="46" cy="52" r="2.5" fill="#00f0ff"/>
+    <circle cx="74" cy="52" r="2.5" fill="#00f0ff"/>
+    <path d="M45 66 Q60 62 75 66 Q60 74 45 66 Z" fill="#00a884"/>
+  </svg>
+</div>
           <h3>Camouflage WhatsApp</h3>
           <p>Installez l'icône sur votre écran d'accueil. Même interface sombre familière, zéro soupçon pour les curieux.</p>
         </div>
 
-        <div class="bento-card card-wa-glass">
-          <div class="bento-icon">🛡️</div>
+        <div class="bento-card card-wa-glass card-flip-bento">
+          <div class="bento-big-illu">
+  <svg viewBox="0 0 120 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cloud en pointillés traversé -->
+    <path d="M35 60 C26 60 20 54 20 46 C20 39 25 34 32 33 C34 23 43 16 54 16 C63 16 71 21 74 29 C80 29 86 34 86 41 C86 49 79 55 70 55" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4,3"/>
+    <!-- Câble de données sectionné / déconnecté -->
+    <line x1="25" y1="75" x2="45" y2="60" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3,3"/>
+    <line x1="75" y1="60" x2="95" y2="75" stroke="#f43f5e" stroke-width="2" stroke-dasharray="3,3"/>
+    <!-- Bouclier central Air-Gap impénétrable -->
+    <path d="M60 30 L80 40 V58 C80 72 60 82 60 82 C60 82 40 72 40 58 V40 Z" fill="#0b141a" stroke="#00f0ff" stroke-width="2"/>
+    <path d="M53 52 L58 57 L68 47" stroke="#25d366" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
           <h3>Zéro Serveur Meta</h3>
           <p>Vos messages ne transitent jamais sur un serveur Peekaboo. Seul le payload illisible passe sur les tuyaux WhatsApp.</p>
         </div>
 
-        <div class="bento-card card-wa-glass">
-          <div class="bento-icon">⚡</div>
+        <div class="bento-card card-wa-glass card-flip-bento">
+          <div class="bento-big-illu">
+  <svg viewBox="0 0 120 100" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <!-- Clipboard Source -->
+    <rect x="25" y="25" width="40" height="55" rx="5" fill="#111b21" stroke="#25d366" stroke-width="1.8"/>
+    <line x1="33" y1="40" x2="57" y2="40" stroke="#25d366" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="33" y1="50" x2="52" y2="50" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="33" y1="60" x2="57" y2="60" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- Clipboard Destinataire WhatsApp -->
+    <rect x="55" y="15" width="40" height="55" rx="5" fill="#005c4b" stroke="#00f0ff" stroke-width="1.8" opacity="0.9"/>
+    <!-- Éclair de transfert instantané -->
+    <path d="M54 38 L44 54 H56 L48 70 L68 50 H56 Z" fill="#00f0ff" stroke="#ffffff" stroke-width="0.8"/>
+  </svg>
+</div>
           <h3>Copier / Coller en 1 Clic</h3>
           <p>Tapez votre message secret, cliquez sur chiffrer : il est copié et prêt à être collé dans votre discussion WhatsApp habituelle.</p>
         </div>
@@ -551,6 +686,7 @@
 
   </div>
 
+  <script src="soundtrack.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
