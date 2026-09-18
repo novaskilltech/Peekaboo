@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NotebookLM — Guide de Source : Peekaboo (WhatsApp Stealth Edition)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+
+    :root {
+      --bg: #0b141a;
+      --surface: #111b21;
+      --surface-card: #182229;
+      --primary: #00a884;
+      --accent-green: #25d366;
+      --accent-cyan: #00f0ff;
+      --text: #e9edef;
+      --text-muted: #8696a0;
+      --border: #222e35;
+      --notebook-blue: #8ab4f8;
+      --notebook-purple: #c58af9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #030712;
+      color: var(--text);
+      font-family: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 30px 15px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    /* NotebookLM Header */
+    .nlm-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .nlm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(138, 180, 248, 0.12);
+      border: 1px solid rgba(138, 180, 248, 0.3);
+      color: var(--notebook-blue);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .source-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .project-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .project-title span {
+      color: var(--accent-green);
+    }
+
+    .project-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin: 0 0 24px 0;
+    }
+
+    /* Audio Overview Player Widget */
+    .audio-player-card {
+      background: linear-gradient(135deg, rgba(138, 180, 248, 0.08) 0%, rgba(197, 138, 249, 0.08) 100%);
+      border: 1px solid rgba(138, 180, 248, 0.25);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 35px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .play-btn {
+      width: 52px;
+      height: 52px;
+      background: var(--notebook-blue);
+      color: #0b141a;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(138, 180, 248, 0.35);
+      transition: transform 0.2s;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .player-details {
+      flex-grow: 1;
+    }
+
+    .player-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .player-hosts {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin: 0 0 10px 0;
+    }
+
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 24px;
+    }
+
+    .waveform-bar {
+      width: 4px;
+      background: var(--notebook-blue);
+      border-radius: 4px;
+      animation: soundwave 1.4s ease-in-out infinite alternate;
+    }
+
+    .waveform-bar:nth-child(2) { height: 16px; animation-delay: 0.1s; }
+    .waveform-bar:nth-child(3) { height: 22px; animation-delay: 0.3s; }
+    .waveform-bar:nth-child(4) { height: 12px; animation-delay: 0.2s; }
+    .waveform-bar:nth-child(5) { height: 18px; animation-delay: 0.4s; }
+    .waveform-bar:nth-child(6) { height: 8px; animation-delay: 0.15s; }
+
+    @keyframes soundwave {
+      0% { transform: scaleY(0.4); }
+      100% { transform: scaleY(1.2); }
+    }
+
+    /* Executive Summary */
+    .summary-card {
+      background: var(--surface-card);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      font-size: 14.5px;
+    }
+
+    .section-h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 35px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    /* Grid 2 Columns */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13.5px;
+      color: #d1d7db;
+    }
+
+    .card ul li {
+      margin-bottom: 8px;
+    }
+
+    /* Table */
+    .table-wrapper {
+      overflow-x: auto;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    th {
+      background: #15222b;
+      color: var(--accent-cyan);
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: #d1d7db;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      background: rgba(37, 211, 102, 0.15);
+      color: var(--accent-green);
+    }
+
+    /* Transcript Box */
+    .transcript-box {
+      background: #0b141a;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .dialogue-turn {
+      margin-bottom: 16px;
+    }
+
+    .speaker {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .speaker.thomas { color: var(--notebook-blue); }
+    .speaker.sophie { color: var(--notebook-purple); }
+
+    .dialogue-text {
+      color: #d1d7db;
+      margin: 0;
+    }
+
+    /* Footer */
+    .nlm-footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .nlm-footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- En-tête NotebookLM -->
+    <div class="nlm-header">
+      <div class="nlm-badge">
+        <span>📓</span> NotebookLM Source Guide • Deep Dive Briefing
+      </div>
+      <div class="source-meta">
+        Source : Audit Nova Skill Tech 2026 • 12/12 Tests Validés
+      </div>
+    </div>
+
+    <h1 class="project-title">PEEKABOO <span>//</span> WhatsApp Stealth Edition</h1>
+    <p class="project-subtitle">Dossier d'ingénierie et d'analyse de valeur pour particuliers et organisations souveraines.</p>
+
+    <!-- Lecteur Audio Overview Mockup -->
+    <div class="audio-player-card">
+      <button class="play-btn" onclick="alert('Audio Overview simulé : Retrouvez la retranscription intégrale ci-dessous !')">▶</button>
+      <div class="player-details">
+        <div class="player-title">
+          <span>Aperçu Audio • Deep Dive (7 min)</span>
+          <span style="font-size: 11px; background: rgba(138, 180, 248, 0.2); padding: 2px 6px; border-radius: 4px; color: var(--notebook-blue);">Généré par IA</span>
+        </div>
+        <div class="player-hosts">Animateurs : Thomas (Expert Cybersécurité) & Sophie (Analyste Libertés Numériques)</div>
+        <div class="waveform">
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+          <div class="waveform-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. Résumé Exécutif -->
+    <div class="summary-card">
+      <strong>Thèse Principale :</strong> Le chiffrement de bout en bout classique (WhatsApp, Telegram) est insuffisant contre les attaques de proximité (regards sur écran déverrouillé), les réquisitions judiciaires de métadonnées et les sauvegardes Cloud non scellées. 
+      <strong>Peekaboo</strong> comble ce vide en introduisant un chiffrement local <em>Air-Gap</em> avant l'envoi, sans aucun serveur tiers. Vos messages transitent sous forme de chaînes indéchiffrables (<code>🔐SL1:...</code>) et s'autodétruisent de la mémoire vive à la fermeture de l'écran.
+    </div>
+
+    <!-- 2. Comparatif : Particuliers vs Entreprises -->
+    <h2 class="section-h2">👥 Matrice de Valeur : Particuliers vs Entreprises</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3><span>👤</span> Pour les Particuliers</h3>
+        <ul>
+          <li><strong>Anti-Shoulder Surfing :</strong> Vos conversations privées restent invisibles pour les curieux dans les transports en commun.</li>
+          <li><strong>Sanctuaire Intime :</strong> Secrets de famille, photos/textes sensibles, mots de passe partagés à l'abri.</li>
+          <li><strong>Immunité Sauvegardes :</strong> Même en cas de fuite de sauvegarde Google Drive ou iCloud, les messages restent cryptés.</li>
+          <li><strong>Gratuit jusqu'à 3 contacts :</strong> Passe Découverte sans pub et sans inscription.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span>💼</span> Pour les Entreprises & Pros</h3>
+        <ul>
+          <li><strong>Secret des Affaires & R&D :</strong> Négociations critiques, contrats, levées de fonds et brevets protégés.</li>
+          <li><strong>Professions Réglementées :</strong> Secret professionnel des <em>Avocats</em>, données de santé des <em>Médecins</em>, intégrité des <em>DAF & Dirigeants</em>.</li>
+          <li><strong>Conformité RGPD & NIS2 :</strong> Zéro transfert de données personnelles, architecture <em>Privacy by Design</em> intégrale.</li>
+          <li><strong>Licence PRO Perpétuelle :</strong> 49€ à vie, contacts illimités et <em>Panic Button</em> d'urgence.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3. Spécifications Cryptographiques -->
+    <h2 class="section-h2">🔬 Architecture Cryptographique & Zéro Serveur</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Composant</th>
+            <th>Standard</th>
+            <th>Garantie Opérationnelle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Échange de Clés</strong></td>
+            <td><span class="badge-tag">ECDH P-256</span></td>
+            <td>Calcul d'un secret partagé unique sans jamais transmettre la clé privée.</td>
+          </tr>
+          <tr>
+            <td><strong>Chiffrement Symétrique</strong></td>
+            <td><span class="badge-tag">AES-GCM-256</span></td>
+            <td>Confidentialité militaire avec vecteur d'initialisation (IV) 96-bit jetable.</td>
+          </tr>
+          <tr>
+            <td><strong>Authentification</strong></td>
+            <td><span class="badge-tag">MAC 128-bit</span></td>
+            <td>Intégrité mathématique : le message rejeté instantanément s'il est falsifié.</td>
+          </tr>
+          <tr>
+            <td><strong>Enclave Locale</strong></td>
+            <td><span class="badge-tag">IndexedDB Hardware</span></td>
+            <td>Clés stockées avec l'option <code>extractable: false</code> (vol par script XSS impossible).</td>
+          </tr>
+          <tr>
+            <td><strong>Rétention Plaintext</strong></td>
+            <td><span class="badge-tag">0 Octet</span></td>
+            <td>Purge immédiate de la mémoire RAM dès que l'écran est masqué ou verrouillé.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. Retranscription Audio Overview -->
+    <h2 class="section-h2">🎙️ Retranscription Audio Overview (Podcast Deep Dive)</h2>
+    <div class="transcript-box">
+      <div class="dialogue-turn">
+        <div class="speaker thomas">THOMAS (00:15) :</div>
+        <p class="dialogue-text">« Bienvenue à tous dans ce Deep Dive NotebookLM ! Aujourd'hui, on décortique <strong>Peekaboo</strong>, une innovation créée par Nova Skill Tech. Sophie, la plupart des gens se demandent : si WhatsApp a déjà un cadenas vert, pourquoi ajouter Peekaboo ? »</p>
+      </div>
+
+      <div class="dialogue-turn">
+        <div class="speaker sophie">SOPHIE (00:38) :</div>
+        <p class="dialogue-text">« C'est LA question essentielle, Thomas. Le chiffrement de WhatsApp sécurise le tuyau de transmission, mais pas les deux extrémités. Si quelqu'un regarde par-dessus ton épaule dans le métro, ou si un tribunal réquisitionne une sauvegarde iCloud, le texte apparaît en clair. Peekaboo s'attaque à ce dernier mètre : le message est chiffré dans ton navigateur avant même d'arriver dans WhatsApp. »</p>
+      </div>
+
+      <div class="dialogue-turn">
+        <div class="speaker thomas">THOMAS (01:12) :</div>
+        <p class="dialogue-text">« Et ce qui frappe dans la doc technique, c'est l'absence totale de serveur. Zéro base de données, zéro intermédiaire. C'est vraiment 100% exécuté sur le téléphone ? »</p>
+      </div>
+
+      <div class="dialogue-turn">
+        <div class="speaker sophie">SOPHIE (01:34) :</div>
+        <p class="dialogue-text">« Absolument. C'est du chiffrement Air-Gap permis par l'API Web Crypto moderne. Ta clé privée <code>ECDH P-256</code> est scellée dans ton téléphone et déclarée non-exportable. Quand tu fermes l'application, la RAM s'autodétruit. Ni Meta, ni ton opérateur, ni les hackers ne peuvent lire quoi que ce soit. Pour eux, c'est juste une suite de caractères inintelligibles commençant par <code>🔐SL1:</code>. »</p>
+      </div>
+
+      <div class="dialogue-turn">
+        <div class="speaker thomas">THOMAS (02:05) :</div>
+        <p class="dialogue-text">« Et pour les professionnels, c'est une véritable révolution : avocats, médecins, dirigeants... 49€ pour une licence à vie, sans abonnement, c'est imbattable pour sanctuariser ses secrets d'affaires. »</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="nlm-footer">
+      <div>© 2026 Nova Skill Tech • Architecture Souveraine</div>
+      <div>Accès Direct : <a href="https://peekaboo.novaskill.tech/" target="_blank">peekaboo.novaskill.tech</a></div>
+    </div>
+
+  </div>
+
+</body>
+</html>

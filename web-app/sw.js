@@ -1,5 +1,5 @@
 // Peekaboo — Service Worker Tactique (Air-Gap PWA)
-const CACHE_NAME = "peekaboo-cache-v1.4.5";
+const CACHE_NAME = "peekaboo-cache-v1.4.6";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
@@ -12,7 +12,11 @@ const ASSETS_TO_CACHE = [
   "./soundtrack.js",
   "./og-image.svg",
   "./twitter-image.svg",
-  "./security-manifest.json"
+  "./security-manifest.json",
+  "./flyer-cyberpunk.jpg",
+  "./flyer-pro.html",
+  "./flyer.html",
+  "./infographie-notebooklm.html"
 ];
 
 // Installation : mise en cache des assets critiques

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peekaboo — Flyer Professionnel Cybersécurité</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+    :root {
+      --wa-dark: #0b141a;
+      --wa-panel: #111b21;
+      --wa-card: #182229;
+      --wa-green: #25d366;
+      --wa-teal: #00a884;
+      --wa-cyan: #00f0ff;
+      --wa-text: #e9edef;
+      --wa-muted: #8696a0;
+      --wa-border: #222e35;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background: #030712;
+      color: var(--wa-text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 30px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .pro-flyer {
+      width: 100%;
+      max-width: 520px;
+      background: radial-gradient(circle at 50% 0%, #15222b 0%, var(--wa-dark) 55%, #030712 100%);
+      border: 1.5px solid var(--wa-teal);
+      border-radius: 32px;
+      padding: 36px 28px;
+      box-shadow: 0 25px 60px rgba(0, 168, 132, 0.2), 0 0 0 1px rgba(0, 240, 255, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pro-flyer::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(37, 211, 102, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Logo & Header */
+    .header {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 24px;
+    }
+
+    .logo-container {
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 14px auto;
+      filter: drop-shadow(0 10px 20px rgba(0, 168, 132, 0.45));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 168, 132, 0.12);
+      border: 1px solid rgba(0, 168, 132, 0.4);
+      color: var(--wa-green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--wa-green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--wa-green);
+    }
+
+    .title {
+      font-size: 32px;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .title span {
+      background: linear-gradient(135deg, #25d366 0%, #00f0ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 13.5px;
+      color: var(--wa-muted);
+      margin-top: 6px;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    /* Description Box */
+    .desc-card {
+      background: rgba(17, 27, 33, 0.85);
+      border: 1px solid var(--wa-border);
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #d1d7db;
+      position: relative;
+      z-index: 2;
+    }
+
+    .desc-card strong {
+      color: var(--wa-cyan);
+    }
+
+    /* 2 Columns Benefits */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .benefit-card {
+      background: var(--wa-panel);
+      border: 1px solid var(--wa-border);
+      border-radius: 16px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .benefit-card.business {
+      border-color: rgba(0, 240, 255, 0.3);
+      background: linear-gradient(180deg, rgba(17, 27, 33, 0.95) 0%, rgba(10, 20, 30, 0.95) 100%);
+    }
+
+    .benefit-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .benefit-card.personal .benefit-icon {
+      background: rgba(37, 211, 102, 0.15);
+      color: var(--wa-green);
+    }
+
+    .benefit-card.business .benefit-icon {
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--wa-cyan);
+    }
+
+    .benefit-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 6px 0;
+    }
+
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 11.5px;
+      color: var(--wa-muted);
+      line-height: 1.45;
+    }
+
+    .benefit-list li {
+      margin-bottom: 5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .benefit-list li::before {
+      content: "•";
+      color: var(--wa-green);
+      font-weight: bold;
+    }
+
+    .benefit-card.business .benefit-list li::before {
+      color: var(--wa-cyan);
+    }
+
+    /* Cryptography & Zero-Server Pill */
+    .crypto-banner {
+      background: linear-gradient(135deg, rgba(0, 168, 132, 0.15) 0%, rgba(2, 132, 199, 0.12) 100%);
+      border: 1px solid rgba(0, 168, 132, 0.35);
+      border-radius: 18px;
+      padding: 16px 18px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .crypto-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .crypto-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .crypto-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .crypto-pill {
+      background: rgba(11, 20, 26, 0.8);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #25d366;
+      font-weight: 600;
+    }
+
+    .crypto-desc {
+      font-size: 11.5px;
+      color: #d1d7db;
+      margin: 8px 0 0 0;
+      line-height: 1.4;
+    }
+
+    /* 3-Step Simplicity */
+    .simplicity-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-box {
+      background: rgba(17, 27, 33, 0.9);
+      border: 1px solid var(--wa-border);
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+
+    .step-num {
+      width: 22px;
+      height: 22px;
+      background: var(--wa-teal);
+      color: var(--wa-dark);
+      font-weight: 900;
+      font-size: 12px;
+      border-radius: 50%;
+      margin: 0 auto 6px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+
+    .step-sub {
+      font-size: 9.5px;
+      color: var(--wa-muted);
+      line-height: 1.25;
+    }
+
+    /* Passes & Pricing */
+    .passes-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pass-item {
+      background: var(--wa-panel);
+      border: 1px solid var(--wa-border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .pass-item.pro {
+      border-color: var(--wa-cyan);
+      box-shadow: 0 4px 16px rgba(0, 240, 255, 0.15);
+    }
+
+    .pass-tag {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--wa-muted);
+    }
+
+    .pass-item.pro .pass-tag {
+      color: var(--wa-cyan);
+    }
+
+    .pass-val {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--wa-green);
+      margin: 2px 0 4px 0;
+    }
+
+    .pass-item.pro .pass-val {
+      color: var(--wa-cyan);
+    }
+
+    .pass-detail {
+      font-size: 10.5px;
+      color: var(--wa-muted);
+      line-height: 1.3;
+    }
+
+    /* Footer CTA & QR Code */
+    .footer-cta {
+      background: linear-gradient(90deg, #111b21 0%, #182229 100%);
+      border: 1.5px solid var(--wa-teal);
+      border-radius: 20px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .qr-frame {
+      width: 76px;
+      height: 76px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 4px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-info h4 {
+      margin: 0 0 3px 0;
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .cta-info p {
+      margin: 0 0 5px 0;
+      font-size: 11px;
+      color: var(--wa-muted);
+      line-height: 1.3;
+    }
+
+    .cta-link {
+      display: inline-block;
+      color: var(--wa-cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .signature {
+      text-align: center;
+      font-size: 10.5px;
+      color: #64748b;
+      margin-top: 14px;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pro-flyer">
+    
+    <!-- En-tête & Logo Officiel Inline -->
+    <div class="header">
+      <div class="logo-container">
+        <!-- Logo Officiel Hybride WhatsApp x Anonymous -->
+        <svg viewBox="0 0 512 512" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="waGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2fe675"/>
+              <stop offset="50%" stop-color="#25d366"/>
+              <stop offset="100%" stop-color="#128c7e"/>
+            </linearGradient>
+            <linearGradient id="anonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1e293b"/>
+              <stop offset="40%" stop-color="#0f172a"/>
+              <stop offset="100%" stop-color="#030712"/>
+            </linearGradient>
+            <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#25d366" flood-opacity="0.4"/>
+            </filter>
+            <clipPath id="leftCut"><rect x="0" y="0" width="256" height="512"/></clipPath>
+            <clipPath id="rightCut"><rect x="256" y="0" width="256" height="512"/></clipPath>
+          </defs>
+          <!-- Côté Gauche WhatsApp -->
+          <g clip-path="url(#leftCut)" filter="url(#logoGlow)">
+            <path d="M 256,50 C 142.23,50 50,142.23 50,256 C 50,296.2 61.5,333.8 81.5,365.8 L 60,455 L 152.5,431 C 183.2,449 218.4,460 256,460 C 369.77,460 462,367.77 462,256 C 462,142.23 369.77,50 256,50 Z" fill="url(#waGrad)"/>
+            <path d="M 175,160 C 168,160 158,163 150,172 C 142,181 125,198 125,233 C 125,268 150,302 153,306 C 157,311 202,380 270,410 C 326,434 338,429 350,428 C 362,427 388,412 393,398 C 398,384 398,371 397,369 C 395,366 390,363 381,359 L 340,339 C 331,335 324,334 318,343 L 305,359 C 300,365 292,366 285,362 C 270,355 240,338 215,310 C 195,288 183,264 179,255 C 176,248 179,243 184,237 L 196,223 C 201,217 200,211 198,206 L 178,166 C 175,161 171,160 175,160 Z" fill="#ffffff"/>
+          </g>
+          <!-- Côté Droit Masque Anonymous -->
+          <g clip-path="url(#rightCut)">
+            <path d="M 256,50 C 369.77,50 462,142.23 462,256 C 462,296.2 450.5,333.8 430.5,365.8 L 452,455 L 359.5,431 C 328.8,449 293.6,460 256,460 Z" fill="url(#anonGrad)" stroke="#00f0ff" stroke-width="2"/>
+            <!-- Oeil et Moustache Anonymous -->
+            <path d="M 280,210 Q 320,200 360,215" stroke="#00f0ff" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <ellipse cx="320" cy="235" rx="20" ry="10" fill="#00f0ff" opacity="0.8"/>
+            <path d="M 270,310 Q 330,305 380,285 Q 340,325 270,318 Z" fill="#25d366"/>
+            <path d="M 290,360 Q 330,390 320,415" stroke="#00f0ff" stroke-width="5" fill="none" stroke-linecap="round"/>
+          </g>
+          <!-- Ligne de scission cybernétique -->
+          <line x1="256" y1="50" x2="256" y2="460" stroke="#00f0ff" stroke-width="3" stroke-dasharray="8,5"/>
+        </svg>
+      </div>
+
+      <div class="badge-top">
+        <span class="badge-dot"></span> AUTODÉFENSE NUMÉRIQUE CITOYENNE
+      </div>
+      <h1 class="title">PEEKABOO<span>.</span></h1>
+      <p class="subtitle">Le Bouclier Cryptographique Indétectable pour WhatsApp & Telegram</p>
+    </div>
+
+    <!-- Descriptif de l'Application -->
+    <div class="desc-card">
+      <strong>Qu'est-ce que Peekaboo ?</strong> Une surcouche de sécurité exécutée directement dans votre navigateur. Elle transforme vos messages sensibles en blocs cryptés inviolables <em>avant</em> leur envoi dans WhatsApp. <strong>Zéro serveur :</strong> vos messages en clair ne quittent jamais la mémoire vive de votre smartphone.
+    </div>
+
+    <!-- Piliers Cryptographiques & Zéro Serveur -->
+    <div class="crypto-banner">
+      <div class="crypto-header">
+        <div class="crypto-title">🛡️ Cryptographie Militaire & Zéro Serveur</div>
+      </div>
+      <div class="crypto-pills">
+        <span class="crypto-pill">ECDH P-256</span>
+        <span class="crypto-pill">AES-GCM-256</span>
+        <span class="crypto-pill">HKDF-SHA256</span>
+        <span class="crypto-pill">MAC 128-bit</span>
+        <span class="crypto-pill">Clés non-exportables</span>
+      </div>
+      <p class="crypto-desc">
+        Clé privée scellée dans l'enclave du téléphone (IndexedDB sandbox). Le déchiffrement a lieu <strong>exclusivement en local</strong>. Dès que l'application est fermée, la mémoire RAM est immédiatement purgée.
+      </p>
+    </div>
+
+    <!-- Bénéfices : Particuliers vs Entreprises -->
+    <div class="benefits-grid">
+      <!-- Particuliers -->
+      <div class="benefit-card personal">
+        <div class="benefit-icon">👤</div>
+        <h4 class="benefit-title">Pour Particuliers</h4>
+        <ul class="benefit-list">
+          <li><strong>Anti-regards indiscrets :</strong> écran illisible pour les curieux dans les transports.</li>
+          <li><strong>Vie privée sanctuarisée :</strong> intimité, famille, finances.</li>
+          <li><strong>Zéro fuite Cloud :</strong> même si vos sauvegardes sont compromises.</li>
+        </ul>
+      </div>
+
+      <!-- Entreprises -->
+      <div class="benefit-card business">
+        <div class="benefit-icon">💼</div>
+        <h4 class="benefit-title">Pour Professionnels</h4>
+        <ul class="benefit-list">
+          <li><strong>Secret des affaires & R&D :</strong> négociations et contrats protégés.</li>
+          <li><strong>Professions réglementées :</strong> Avocats, Médecins, DAF, Journalistes.</li>
+          <li><strong>Conformité RGPD & NIS2 :</strong> immunité face aux réquisitions cloud tierces.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Simplicité : 3 Étapes Ultra-Simples -->
+    <div class="simplicity-row">
+      <div class="step-box">
+        <div class="step-num">1</div>
+        <div class="step-label">Écrivez</div>
+        <div class="step-sub">Tapez votre secret dans la console Peekaboo</div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">2</div>
+        <div class="step-label">Chiffrez</div>
+        <div class="step-sub">1 clic génère le cadenas <code>🔐SL1:...</code></div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">3</div>
+        <div class="step-label">Collez</div>
+        <div class="step-sub">Envoyez sur WhatsApp en toute sérénité</div>
+      </div>
+    </div>
+
+    <!-- Le Passe Cryptographique -->
+    <div class="passes-container">
+      <div class="pass-item">
+        <div class="pass-tag">Passe Découverte</div>
+        <div class="pass-val">0 €</div>
+        <div class="pass-detail">Gratuit à vie • Jusqu'à 3 contacts sécurisés • 100% Hors-ligne</div>
+      </div>
+
+      <div class="pass-item pro">
+        <div class="pass-tag">Passe PRO Entreprise</div>
+        <div class="pass-val">49 €</div>
+        <div class="pass-detail">Licence perpétuelle • Contacts illimités • Panic-Lock d'urgence</div>
+      </div>
+    </div>
+
+    <!-- Footer Appel à l'action & QR Code -->
+    <div class="footer-cta">
+      <div class="qr-frame">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+          <rect width="100" height="100" fill="#ffffff"/>
+          <rect x="8" y="8" width="28" height="28" fill="#0b141a"/>
+          <rect x="12" y="12" width="20" height="20" fill="#ffffff"/>
+          <rect x="16" y="16" width="12" height="12" fill="#00a884"/>
+
+          <rect x="64" y="8" width="28" height="28" fill="#0b141a"/>
+          <rect x="68" y="12" width="20" height="20" fill="#ffffff"/>
+          <rect x="72" y="16" width="12" height="12" fill="#00a884"/>
+
+          <rect x="8" y="64" width="28" height="28" fill="#0b141a"/>
+          <rect x="12" y="68" width="20" height="20" fill="#ffffff"/>
+          <rect x="16" y="72" width="12" height="12" fill="#00a884"/>
+
+          <rect x="42" y="16" width="8" height="8" fill="#0b141a"/>
+          <rect x="52" y="24" width="6" height="8" fill="#0b141a"/>
+          <rect x="44" y="34" width="10" height="6" fill="#0b141a"/>
+          <rect x="22" y="44" width="8" height="10" fill="#0b141a"/>
+          <rect x="36" y="48" width="12" height="6" fill="#0b141a"/>
+          <rect x="54" y="44" width="10" height="10" fill="#00a884"/>
+          <rect x="70" y="48" width="12" height="6" fill="#0b141a"/>
+          <rect x="44" y="66" width="10" height="12" fill="#0b141a"/>
+          <rect x="66" y="72" width="14" height="6" fill="#0b141a"/>
+          <rect x="82" y="82" width="8" height="8" fill="#00a884"/>
+        </svg>
+      </div>
+      <div class="cta-info">
+        <h4>Essayer immédiatement</h4>
+        <p>Application PWA autonome (iOS & Android). Sans téléchargement depuis les stores GAFAM.</p>
+        <a href="https://peekaboo.novaskill.tech/" class="cta-link" target="_blank">peekaboo.novaskill.tech</a>
+      </div>
+    </div>
+
+    <div class="signature">
+      © 2026 Nova Skill Tech • Éditeur de Technologies Souveraines • Tous droits réservés
+    </div>
+
+  </div>
+
+</body>
+</html>

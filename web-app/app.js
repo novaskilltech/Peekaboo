@@ -23,7 +23,8 @@ function auditLog(eventTag) {
   const ALLOWED_EVENTS = [
     "VAULT_READY", "KEYSTORE_MIGRATION_SUCCESS", "ENCRYPT_SUCCESS",
     "DECRYPT_SUCCESS", "DECRYPT_AUTH_FAILED", "AUTO_LOCK_TRIGGERED",
-    "SERVICE_WORKER_REGISTERED", "NEW_VERSION_AVAILABLE", "CLIPBOARD_WARN_CLEARED"
+    "SERVICE_WORKER_REGISTERED", "NEW_VERSION_AVAILABLE", "CLIPBOARD_WARN_CLEARED",
+    "STORAGE_PERSISTED"
   ];
   if (ALLOWED_EVENTS.includes(eventTag)) {
     // Émission sécurisée sans argument sensible
@@ -167,6 +168,18 @@ async function sha256Fingerprint(keyBuffer) {
 // 3. GESTION DES CLÉS & MIGRATION (CryptoKey non-extractable)
 // --------------------------------------------------------------------------
 async function initializeIdentity() {
+  // Protection contre l'éviction de stockage par le navigateur (iOS Safari ITP / Android)
+  if (typeof navigator !== "undefined" && navigator.storage && navigator.storage.persist) {
+    try {
+      const isPersisted = await navigator.storage.persist();
+      if (isPersisted) {
+        auditLog("STORAGE_PERSISTED");
+      }
+    } catch (e) {
+      // Ignorer si non supporté ou refusé par la politique utilisateur
+    }
+  }
+
   // 1. Vérifier si une clé existe déjà dans IndexedDB
   const storedVaultKey = await SecureKeyStore.getStoredKey("master_identity");
 

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flyer Explicatif — Peekaboo</title>
+  <style>
+    body {
+      background-color: #030712;
+      color: #e9edef;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .flyer-canvas {
+      width: 100%;
+      max-width: 440px; /* Ratio 9:16 smartphone / story */
+      background: radial-gradient(circle at 50% 10%, #111b21 0%, #0b141a 70%, #030712 100%);
+      border: 2px solid #00a884;
+      border-radius: 28px;
+      padding: 28px 22px;
+      box-shadow: 0 20px 50px rgba(0, 168, 132, 0.25), 0 0 0 1px rgba(0, 240, 255, 0.1);
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flyer-canvas::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(0, 168, 132, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .flyer-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .flyer-tag {
+      display: inline-block;
+      background: rgba(0, 168, 132, 0.15);
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .flyer-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: #ffffff;
+      margin: 0;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .flyer-title span {
+      color: #25d366;
+      text-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+    }
+
+    .flyer-subtitle {
+      font-size: 13.5px;
+      color: #8696a0;
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
+
+    /* Concept Section */
+    .concept-box {
+      background: rgba(17, 27, 33, 0.85);
+      border: 1px solid #222e35;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #d1d7db;
+    }
+
+    .concept-box strong {
+      color: #00f0ff;
+    }
+
+    /* Steps */
+    .steps-section {
+      margin-bottom: 18px;
+    }
+
+    .steps-title {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #00a884;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      background: rgba(11, 20, 26, 0.6);
+      border-left: 3px solid #25d366;
+      padding: 8px 12px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .step-badge {
+      background: #00a884;
+      color: #111b21;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      margin: 0 0 2px 0;
+      font-size: 12.5px;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .step-content p {
+      margin: 0;
+      font-size: 11px;
+      color: #8696a0;
+      line-height: 1.35;
+    }
+
+    .code-preview {
+      display: inline-block;
+      background: #0b141a;
+      border: 1px dashed #00a884;
+      color: #25d366;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 10.5px;
+      margin-top: 3px;
+    }
+
+    /* Section Le Pass */
+    .pass-section {
+      background: linear-gradient(135deg, rgba(0, 168, 132, 0.12) 0%, rgba(2, 132, 199, 0.08) 100%);
+      border: 1px solid rgba(0, 168, 132, 0.35);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    .pass-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .pass-header h3 {
+      margin: 0;
+      font-size: 13.5px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pass-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .pass-card {
+      background: #111b21;
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid #222e35;
+      text-align: center;
+    }
+
+    .pass-card.pro {
+      border-color: #00f0ff;
+      box-shadow: 0 4px 12px rgba(0, 240, 255, 0.15);
+    }
+
+    .pass-card h5 {
+      margin: 0 0 2px 0;
+      font-size: 11.5px;
+      color: #e9edef;
+    }
+
+    .pass-price {
+      font-size: 17px;
+      font-weight: 900;
+      color: #25d366;
+      margin-bottom: 2px;
+    }
+
+    .pass-card.pro .pass-price {
+      color: #00f0ff;
+    }
+
+    .pass-card p {
+      margin: 0;
+      font-size: 10px;
+      color: #8696a0;
+      line-height: 1.25;
+    }
+
+    /* Badges Sécurité */
+    .badges-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .badge-pill {
+      flex: 1;
+      background: #111b21;
+      border: 1px solid #222e35;
+      border-radius: 10px;
+      padding: 7px 4px;
+      text-align: center;
+    }
+
+    .badge-pill .icon {
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .badge-pill .lbl {
+      font-size: 9px;
+      font-weight: 700;
+      color: #25d366;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Footer CTA */
+    .flyer-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #111b21;
+      border: 1px solid #00a884;
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .qr-box {
+      width: 62px;
+      height: 62px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 3px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-text h4 {
+      margin: 0 0 2px 0;
+      font-size: 12.5px;
+      color: #ffffff;
+    }
+
+    .cta-text p {
+      margin: 0 0 3px 0;
+      font-size: 10.5px;
+      color: #8696a0;
+    }
+
+    .cta-url {
+      color: #00f0ff;
+      font-weight: 800;
+      font-size: 12px;
+      text-decoration: none;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flyer-canvas">
+    
+    <!-- En-tête -->
+    <div class="flyer-header">
+      <div class="flyer-tag">AUTODÉFENSE NUMÉRIQUE</div>
+      <h1 class="flyer-title">PEEKABOO<span>.</span></h1>
+      <p class="flyer-subtitle">Le Bouclier Furtif Invisible pour WhatsApp & Telegram</p>
+    </div>
+
+    <!-- C'est quoi exactement ? -->
+    <div class="concept-box">
+      <strong>C'est quoi exactement ?</strong> Peekaboo est une surcouche de chiffrement local. Vos messages secrets sont transformés en code mathématiquement indéchiffrable <strong>avant</strong> d'être envoyés sur WhatsApp. Ni Meta, ni les pirates, ni les curieux ne peuvent lire vos conversations.
+    </div>
+
+    <!-- Comment ça marche ? -->
+    <div class="steps-section">
+      <div class="steps-title">⚡️ Comment ça marche en 3 étapes :</div>
+      
+      <div class="step-item">
+        <div class="step-badge">1</div>
+        <div class="step-content">
+          <h4>Écris dans Peekaboo</h4>
+          <p>Tape ton texte secret dans la console sécurisée depuis ton smartphone.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-badge">2</div>
+        <div class="step-content">
+          <h4>Chiffre en 1 clic</h4>
+          <p>Génère un cadenas inviolable en mémoire vive :</p>
+          <div class="code-preview">🔐SL1:aX9zK...#MAC128</div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-badge">3</div>
+        <div class="step-content">
+          <h4>Colle et envoie sur WhatsApp</h4>
+          <p>Envoie le code sur ton chat habituel. Seul ton destinataire muni de son passe peut le révéler.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- C'est quoi le Passe ? -->
+    <div class="pass-section">
+      <div class="pass-header">
+        <h3>🔑 C'est quoi "Le Passe" ?</h3>
+      </div>
+      <p style="margin: 0 0 8px 0; font-size: 10.5px; color: #8696a0;">
+        Le Passe est votre <strong>clé privée cryptographique</strong> stockée dans votre téléphone (zéro serveur). Choisissez votre formule :
+      </p>
+      
+      <div class="pass-grid">
+        <div class="pass-card">
+          <h5>Passe Gratuit</h5>
+          <div class="pass-price">0 €</div>
+          <p>Gratuit à vie<br>Jusqu'à 3 contacts<br>100% Hors-ligne</p>
+        </div>
+
+        <div class="pass-card pro">
+          <h5>Passe PRO</h5>
+          <div class="pass-price">49 €</div>
+          <p>Licence à vie<br>Contacts illimités<br>Panic-Lock d'urgence</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Piliers de Sécurité -->
+    <div class="badges-row">
+      <div class="badge-pill">
+        <div class="icon">🚫</div>
+        <div class="lbl">0 Serveur</div>
+      </div>
+      <div class="badge-pill">
+        <div class="icon">✈️</div>
+        <div class="lbl">Mode Avion</div>
+      </div>
+      <div class="badge-pill">
+        <div class="icon">💥</div>
+        <div class="lbl">Auto-Purge RAM</div>
+      </div>
+    </div>
+
+    <!-- Pied de flyer avec QR Code & Accès -->
+    <div class="flyer-footer">
+      <div class="qr-box">
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+          <rect width="100" height="100" fill="#ffffff"/>
+          <rect x="10" y="10" width="26" height="26" fill="#111b21"/>
+          <rect x="14" y="14" width="18" height="18" fill="#ffffff"/>
+          <rect x="18" y="18" width="10" height="10" fill="#00a884"/>
+
+          <rect x="64" y="10" width="26" height="26" fill="#111b21"/>
+          <rect x="68" y="14" width="18" height="18" fill="#ffffff"/>
+          <rect x="72" y="18" width="10" height="10" fill="#00a884"/>
+
+          <rect x="10" y="64" width="26" height="26" fill="#111b21"/>
+          <rect x="14" y="68" width="18" height="18" fill="#ffffff"/>
+          <rect x="18" y="72" width="10" height="10" fill="#00a884"/>
+
+          <rect x="42" y="15" width="6" height="6" fill="#111b21"/>
+          <rect x="52" y="22" width="6" height="6" fill="#111b21"/>
+          <rect x="44" y="32" width="8" height="6" fill="#111b21"/>
+          <rect x="20" y="44" width="6" height="8" fill="#111b21"/>
+          <rect x="35" y="48" width="12" height="6" fill="#111b21"/>
+          <rect x="55" y="44" width="8" height="8" fill="#00a884"/>
+          <rect x="70" y="48" width="10" height="6" fill="#111b21"/>
+          <rect x="45" y="65" width="8" height="10" fill="#111b21"/>
+          <rect x="65" y="70" width="12" height="6" fill="#111b21"/>
+          <rect x="82" y="82" width="6" height="6" fill="#00a884"/>
+        </svg>
+      </div>
+
+      <div class="cta-text">
+        <h4>Essayer gratuitement</h4>
+        <p>Sans téléchargement App Store :</p>
+        <a href="https://peekaboo.novaskill.tech/" class="cta-url" target="_blank">peekaboo.novaskill.tech</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
