@@ -3,6 +3,10 @@
 build/
 *.pyc
 __pycache__/
+node_modules/
+package-lock.json.backup
+.env
+.env.*
 
 # OS
 .DS_Store
@@ -10,3 +14,4 @@ Thumbs.db
 
 # Vercel
 .vercel
+

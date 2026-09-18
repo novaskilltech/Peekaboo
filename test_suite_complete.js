@@ -223,8 +223,39 @@ async function runSecuritySuite() {
     "Aucun log console ne divulgue le plaintext, ciphertext ou clés cryptographiques."
   );
 
+  // --- TEST 13 : Configuration Tarifaire Centralisée (4 Offres) ---
+  const pricingConfigContent = fs.readFileSync('web-app/pricing-config.js', 'utf8');
+  const hasFreeConfig = pricingConfigContent.includes('free:') && pricingConfigContent.includes('maxContacts: 3');
+  const hasMonthlyConfig = pricingConfigContent.includes('personalMonthly:') && pricingConfigContent.includes('"2,99 €"');
+  const hasAnnualConfig = pricingConfigContent.includes('personalAnnual:') && pricingConfigContent.includes('"29,90 €"') && pricingConfigContent.includes('isFeatured: true');
+  const hasFounderConfig = pricingConfigContent.includes('founder:') && pricingConfigContent.includes('"49 €"');
+  report(
+    "TEST 13 — Architecture Tarifaire (4 Offres)",
+    hasFreeConfig && hasMonthlyConfig && hasAnnualConfig && hasFounderConfig,
+    "Les 4 offres (Free, Personal Mensuel, Personal Annuel Vedette, Founder Lifetime) sont validées."
+  );
+
+  // --- TEST 14 : Enfoncement de la Limite de Contacts (Freemium Quota) ---
+  const enforcesQuota = appJsContent.includes('activeContacts.length >= 3') && appJsContent.includes('isUnlimitedPlan');
+  const updatesUiQuota = appJsContent.includes('updateSubscriptionUi') && appJsContent.includes('contacts-count-display');
+  report(
+    "TEST 14 — Quota Freemium (3 contacts max)",
+    enforcesQuota && updatesUiQuota,
+    "Plafond à 3 contacts vérifié pour l'offre Free, contact illimité pour Personal/Founder."
+  );
+
+  // --- TEST 15 : Sécurité Serverless Stripe (Zéro secret côté client) ---
+  const clientLeaksSecret = appJsContent.includes('sk_live_') || appJsContent.includes('sk_test_') || pricingConfigContent.includes('sk_');
+  const webhookVerifiesRawBody = fs.readFileSync('api/stripe-webhook.js', 'utf8').includes('stripe.webhooks.constructEvent');
+  const checkoutHasServerless = fs.existsSync('api/create-checkout-session.js') && fs.existsSync('api/create-portal-session.js');
+  report(
+    "TEST 15 — Sécurité Paiement Stripe Serverless",
+    !clientLeaksSecret && webhookVerifiesRawBody && checkoutHasServerless,
+    "Zéro secret Stripe exposé côté client, validation signature cryptographique webhook serveur."
+  );
+
   console.log("\n=================================================================");
-  console.log(`RÉSULTAT GLOBAL : ${passed}/12 tests réussis (${failed} échecs).`);
+  console.log(`RÉSULTAT GLOBAL : ${passed}/15 tests réussis (${failed} échecs).`);
   console.log("=================================================================");
 
   if (failed > 0) {

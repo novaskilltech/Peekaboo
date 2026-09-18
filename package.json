@@ -1,0 +1,12 @@
+{
+  "name": "peekaboo-crypto-stealth",
+  "version": "1.5.0",
+  "description": "Peekaboo — Chiffrez vos messages avant de les envoyer (Web Crypto + Stripe Checkout Serverless)",
+  "main": "web-app/app.js",
+  "scripts": {
+    "test": "node test_suite_complete.js"
+  },
+  "dependencies": {
+    "stripe": "^17.5.0"
+  }
+}

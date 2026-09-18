@@ -335,6 +335,7 @@ async function loadAndRenderContacts() {
   });
 
   updateSelectedContactDisplay();
+  await updateSubscriptionUi();
 }
 
 function updateSelectedContactDisplay() {
@@ -365,6 +366,19 @@ async function saveNewContactSecurely() {
 
   if (!invite.startsWith(INVITE_PREFIX)) {
     showNotification(notif, `Format invalide : l'invitation doit débuter par ${INVITE_PREFIX}`, "error");
+    return;
+  }
+
+  // Vérification de la limite de contacts selon la formule (Offre Free : max 3 contacts)
+  const existing = activeContacts.find(c => c.name.toLowerCase() === name.toLowerCase());
+  const currentPlan = await SecureKeyStore.getSetting("user_plan", "free");
+  const isUnlimitedPlan = ["personal_monthly", "personal_annual", "founder", "pro", "enterprise"].includes(currentPlan);
+  if (!existing && !isUnlimitedPlan && activeContacts.length >= 3) {
+    showNotification(
+      notif,
+      "⚠️ Limite atteinte : l'offre Free est limitée à 3 contacts sécurisés. Passez à la formule Personal ou Founder pour des contacts illimités.",
+      "error"
+    );
     return;
   }
 
@@ -697,6 +711,239 @@ async function runInstallationChecklist() {
   } catch (e) {
     document.getElementById("sec-version").textContent = "1.4.2 (Offline)";
   }
+// --------------------------------------------------------------------------
+// 9B. GESTION DES FORMULES TARIFAIRES, STRIPE CHECKOUT & PORTAL
+// --------------------------------------------------------------------------
+async function updateSubscriptionUi() {
+  const currentPlan = await SecureKeyStore.getSetting("user_plan", "free");
+  const customerId = await SecureKeyStore.getSetting("stripe_customer_id", null);
+  const isUnlimitedPlan = ["personal_monthly", "personal_annual", "founder", "pro", "enterprise"].includes(currentPlan);
+
+  const tierBadge = document.getElementById("current-tier-badge");
+  const countDisplay = document.getElementById("contacts-count-display");
+  const maxDisplay = document.getElementById("contacts-max-display");
+  const btnManage = document.getElementById("btn-manage-subscription");
+  const btnUpgrade = document.getElementById("btn-upgrade-from-app");
+
+  if (countDisplay) countDisplay.textContent = activeContacts.length;
+  if (maxDisplay) maxDisplay.textContent = isUnlimitedPlan ? "Illimité" : "3";
+
+  if (tierBadge) {
+    if (currentPlan === "personal_monthly") {
+      tierBadge.textContent = "PLAN PERSONAL (MENSUEL)";
+      tierBadge.className = "badge-tier-personal";
+    } else if (currentPlan === "personal_annual") {
+      tierBadge.textContent = "PLAN PERSONAL (ANNUEL)";
+      tierBadge.className = "badge-tier-personal";
+    } else if (currentPlan === "founder") {
+      tierBadge.textContent = "MEMBRE FOUNDER (À VIE)";
+      tierBadge.className = "badge-tier-founder";
+    } else {
+      tierBadge.textContent = "PLAN FREE";
+      tierBadge.className = "badge-tier-free";
+    }
+  }
+
+  if (btnManage) {
+    if (customerId || isUnlimitedPlan) {
+      btnManage.classList.remove("hidden");
+    } else {
+      btnManage.classList.add("hidden");
+    }
+  }
+
+  if (btnUpgrade) {
+    if (isUnlimitedPlan) {
+      btnUpgrade.textContent = "✓ Formule Illimitée Active";
+      btnUpgrade.disabled = true;
+      btnUpgrade.style.opacity = "0.7";
+      btnUpgrade.style.cursor = "default";
+    } else {
+      btnUpgrade.textContent = "⚡ Passer à Personal (Contacts illimités)";
+      btnUpgrade.disabled = false;
+      btnUpgrade.style.opacity = "1";
+      btnUpgrade.style.cursor = "pointer";
+    }
+  }
+}
+
+function applyFounderConfig() {
+  if (!window.PEEKABOO_PRICING_CONFIG || !window.PEEKABOO_PRICING_CONFIG.founder) return;
+  const cfg = window.PEEKABOO_PRICING_CONFIG.founder;
+  const card = document.getElementById("card-plan-founder");
+  if (!card) return;
+
+  if (cfg.active === false) {
+    card.style.display = "none";
+    return;
+  } else {
+    card.style.display = "flex";
+  }
+
+  const priceDisplay = document.getElementById("founder-price-display");
+  if (priceDisplay && cfg.priceDisplay) {
+    priceDisplay.innerHTML = `${cfg.priceDisplay} <span class="plan-period">${cfg.period || "Paiement unique"}</span>`;
+  }
+
+  const countdownBox = document.getElementById("founder-countdown-box");
+  const countdownText = document.getElementById("founder-countdown-text");
+  if (countdownBox && countdownText) {
+    if (cfg.remainingLicenses) {
+      countdownText.textContent = `🔥 Seulement ${cfg.remainingLicenses} licences restantes`;
+      countdownBox.classList.remove("hidden");
+    } else if (cfg.endDate) {
+      countdownText.textContent = `⏳ Offre valide jusqu'au ${cfg.endDate}`;
+      countdownBox.classList.remove("hidden");
+    } else {
+      countdownBox.classList.add("hidden");
+    }
+  }
+}
+
+function setupFaqAccordions() {
+  const faqQuestions = document.querySelectorAll(".faq-question");
+  faqQuestions.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      if (item) {
+        const wasActive = item.classList.contains("active");
+        document.querySelectorAll(".faq-item").forEach((other) => other.classList.remove("active"));
+        if (!wasActive) {
+          item.classList.add("active");
+        }
+      }
+    });
+  });
+}
+
+async function startStripeCheckout(planId) {
+  if (!planId) return;
+
+  if (window.PeekabooAnalytics) {
+    if (planId === "personal_monthly") window.PeekabooAnalytics.track("click_monthly", { plan: planId });
+    else if (planId === "personal_annual") window.PeekabooAnalytics.track("click_annual", { plan: planId });
+    else if (planId === "founder") window.PeekabooAnalytics.track("click_founder", { plan: planId });
+    window.PeekabooAnalytics.track("checkout_started", { plan: planId });
+  }
+
+  const clickedBtn = document.querySelector(`.btn-plan[data-plan="${planId}"]`);
+  const originalText = clickedBtn ? clickedBtn.textContent : "";
+  if (clickedBtn) {
+    clickedBtn.disabled = true;
+    clickedBtn.textContent = "Connexion Stripe...";
+  }
+
+  try {
+    const res = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        plan: planId,
+        returnOrigin: window.location.origin
+      })
+    });
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || "Erreur de création de session Stripe.");
+    }
+
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error("URL de redirection Stripe absente.");
+    }
+  } catch (err) {
+    console.error("[CHECKOUT_REDIRECT_ERROR]", err);
+    alert("⚠️ Redirection Stripe impossible pour le moment :\n" + err.message + "\n\n(Vérifiez que STRIPE_SECRET_KEY est configurée dans vos variables Vercel)");
+    if (clickedBtn) {
+      clickedBtn.disabled = false;
+      clickedBtn.textContent = originalText;
+    }
+  }
+}
+
+async function openCustomerPortal() {
+  const customerId = await SecureKeyStore.getSetting("stripe_customer_id", null);
+  if (!customerId) {
+    alert("Aucun identifiant client Stripe n'est enregistré pour ce terminal.\nSi vous avez souscrit sur un autre appareil, connectez-vous via l'e-mail de confirmation Stripe.");
+    return;
+  }
+
+  const btnManage = document.getElementById("btn-manage-subscription");
+  const origText = btnManage ? btnManage.textContent : "";
+  if (btnManage) {
+    btnManage.disabled = true;
+    btnManage.textContent = "Ouverture Portail...";
+  }
+
+  try {
+    const res = await fetch("/api/create-portal-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        customerId,
+        returnOrigin: window.location.origin
+      })
+    });
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || "Erreur portail Stripe.");
+    }
+
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    }
+  } catch (err) {
+    console.error("[PORTAL_REDIRECT_ERROR]", err);
+    alert("⚠️ Impossible d'accéder au portail client pour le moment :\n" + err.message);
+  } finally {
+    if (btnManage) {
+      btnManage.disabled = false;
+      btnManage.textContent = origText;
+    }
+  }
+}
+
+async function handleCheckoutReturn() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = urlParams.get("checkout_session_id");
+  const planParam = urlParams.get("plan");
+  const statusParam = urlParams.get("status");
+
+  if (sessionId && statusParam === "success") {
+    try {
+      window.history.replaceState({}, document.title, window.location.pathname);
+
+      const res = await fetch(`/api/check-subscription?session_id=${encodeURIComponent(sessionId)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.isPremium) {
+          await SecureKeyStore.saveSetting("user_plan", data.plan);
+          if (data.customerId) {
+            await SecureKeyStore.saveSetting("stripe_customer_id", data.customerId);
+          }
+          if (window.PeekabooAnalytics) {
+            window.PeekabooAnalytics.track("checkout_completed", { plan: data.plan });
+          }
+          alert(`🎉 Félicitations ! Votre formule [${data.plan.toUpperCase()}] est maintenant activée.`);
+          await updateSubscriptionUi();
+        }
+      } else if (planParam) {
+        await SecureKeyStore.saveSetting("user_plan", planParam);
+        await updateSubscriptionUi();
+      }
+    } catch (err) {
+      console.warn("[CHECKOUT_VERIFICATION_OFFLINE]", err);
+      if (planParam) {
+        await SecureKeyStore.saveSetting("user_plan", planParam);
+        await updateSubscriptionUi();
+      }
+    }
+  }
 }
 
 // --------------------------------------------------------------------------
@@ -873,6 +1120,53 @@ window.addEventListener("DOMContentLoaded", async () => {
         if (soundtrackLabel) soundtrackLabel.textContent = "Bande-Son Espionnage : OFF";
       }
     });
+  }
+
+  // 7. Initialisation des offres tarifaires, du Pass Founder et des FAQ
+  applyFounderConfig();
+  setupFaqAccordions();
+  await handleCheckoutReturn();
+  await updateSubscriptionUi();
+
+  // Écouteurs sur les boutons de sélection de formule (Checkout Stripe)
+  const planButtons = document.querySelectorAll(".btn-plan[data-plan]");
+  planButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const plan = btn.getAttribute("data-plan");
+      startStripeCheckout(plan);
+    });
+  });
+
+  // Bouton de mise à niveau depuis la console d'application
+  const btnUpgradeFromApp = document.getElementById("btn-upgrade-from-app");
+  if (btnUpgradeFromApp) {
+    btnUpgradeFromApp.addEventListener("click", () => {
+      closeVault();
+      const pricingEl = document.getElementById("pricing");
+      if (pricingEl) {
+        pricingEl.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+
+  // Bouton portail de gestion d'abonnement Stripe
+  const btnManageSub = document.getElementById("btn-manage-subscription");
+  if (btnManageSub) {
+    btnManageSub.addEventListener("click", openCustomerPortal);
+  }
+
+  // Mesure fonctionnelle anonyme : affichage de la grille tarifaire
+  const pricingSection = document.getElementById("pricing");
+  if (pricingSection && "IntersectionObserver" in window && window.PeekabooAnalytics) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          window.PeekabooAnalytics.track("pricing_view");
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    observer.observe(pricingSection);
   }
 });
 

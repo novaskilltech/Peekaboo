@@ -1,10 +1,12 @@
 // Peekaboo — Service Worker Tactique (Air-Gap PWA)
-const CACHE_NAME = "peekaboo-cache-v1.4.6";
+const CACHE_NAME = "peekaboo-cache-v1.5.0";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
   "./style.css",
   "./app.js",
+  "./pricing-config.js",
+  "./analytics.js",
   "./manifest.webmanifest",
   "./logo.svg",
   "./icon-192.svg",

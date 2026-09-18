@@ -1371,3 +1371,547 @@ body.wa-theme {
 .card-flip-bento:hover .bento-big-illu svg {
   transform: scale(1.1);
 }
+
+/* ==========================================================================
+   NOUVELLE SECTION TARIFICATION FREEMIUM + ABONNEMENT + FOUNDER
+   ========================================================================== */
+
+/* Section "Essayez Gratuitement" */
+.try-free-section {
+  margin: 40px auto;
+  max-width: 780px;
+  text-align: center;
+}
+
+.try-free-card {
+  padding: 36px 24px;
+  border: 1.5px solid var(--wa-green-accent);
+  background: radial-gradient(circle at 50% 0%, rgba(0, 168, 132, 0.15) 0%, rgba(17, 27, 33, 0.95) 75%);
+  box-shadow: 0 10px 30px rgba(0, 168, 132, 0.2);
+}
+
+.try-free-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+.try-free-desc {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.try-free-desc strong {
+  color: var(--wa-green-accent);
+}
+
+/* Grille 4 Cartes Tarifaires */
+.pricing-section {
+  padding: 50px 15px 30px 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 35px;
+  align-items: stretch;
+}
+
+@media (min-width: 1100px) {
+  .pricing-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 22px;
+  border-radius: 20px;
+  background: var(--wa-panel-bg);
+  border: 1px solid var(--wa-border);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 168, 132, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Carte Annuelle Mise en Avant (Vedette) */
+.pricing-card.featured-plan {
+  border: 2px solid var(--wa-green-primary);
+  background: linear-gradient(180deg, rgba(17, 27, 33, 0.95) 0%, rgba(11, 20, 26, 0.98) 100%);
+  box-shadow: 0 15px 45px rgba(0, 168, 132, 0.35);
+  transform: scale(1.03);
+  z-index: 3;
+}
+
+.pricing-card.featured-plan:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.featured-ribbon {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--wa-green-primary);
+  color: #111b21;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 4px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  text-transform: uppercase;
+}
+
+/* Badges Plan */
+.plan-badge-neutral {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.plan-badge-highlight {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--wa-green-accent);
+  background: rgba(0, 168, 132, 0.15);
+  border: 1px solid rgba(0, 168, 132, 0.4);
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.founder-badges-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.founder-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.founder-badge.launch {
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--anon-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.founder-badge.limited {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.plan-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+}
+
+.plan-price {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.plan-period {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.plan-monthly-equivalent {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--wa-green-accent);
+  margin-bottom: 6px;
+}
+
+.plan-subtext {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin: 0 0 16px 0;
+  line-height: 1.35;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  flex-grow: 1;
+}
+
+.plan-features li {
+  font-size: 0.88rem;
+  color: #d1d7db;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.plan-features .check {
+  font-weight: bold;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.plan-features .check.highlight {
+  color: var(--wa-green-accent);
+}
+
+.plan-features .check.cyan {
+  color: var(--anon-cyan);
+}
+
+/* Boutons de Plans */
+.plan-cta-box {
+  margin-top: auto;
+}
+
+.btn-plan {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-height: 48px; /* Touch target mobile */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.btn-plan-free {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: var(--wa-border);
+}
+
+.btn-plan-free:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #94a3b8;
+}
+
+.btn-plan-monthly {
+  background: #111b21;
+  color: var(--wa-green-accent);
+  border-color: var(--wa-green-primary);
+}
+
+.btn-plan-monthly:hover {
+  background: rgba(0, 168, 132, 0.2);
+}
+
+.btn-plan-annual {
+  background: var(--wa-green-primary);
+  color: #111b21;
+  box-shadow: 0 4px 15px rgba(0, 168, 132, 0.4);
+}
+
+.btn-plan-annual:hover {
+  background: #2fe675;
+  transform: translateY(-1px);
+}
+
+.btn-plan-founder {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(2, 132, 199, 0.3) 100%);
+  color: var(--anon-cyan);
+  border-color: var(--anon-cyan);
+}
+
+.btn-plan-founder:hover {
+  background: var(--anon-cyan);
+  color: #0b141a;
+}
+
+.founder-disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 10px 0 0 0;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   TABLEAU COMPARATIF RESPONSIVE
+   ========================================================================== */
+.comparison-wrapper {
+  margin-top: 60px;
+  background: var(--wa-panel-bg);
+  border: 1px solid var(--wa-border);
+  border-radius: 20px;
+  padding: 30px 24px;
+}
+
+.comparison-title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 25px 0;
+}
+
+.table-responsive-box {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 500px;
+}
+
+.comparison-table th {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 2px solid var(--wa-border);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.comparison-table th.col-feature {
+  text-align: left;
+  width: 40%;
+}
+
+.comparison-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  color: #d1d7db;
+}
+
+.comparison-table td.feature-label {
+  text-align: left;
+  font-weight: 600;
+  color: #e9edef;
+}
+
+.comparison-table .highlighted-col {
+  background: rgba(0, 168, 132, 0.06);
+}
+
+.badge-yes {
+  color: var(--wa-green-accent);
+  font-weight: 700;
+}
+
+.badge-sub {
+  color: var(--anon-cyan);
+  font-weight: 800;
+}
+
+.badge-no {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   FAQ TARIFICATION ACCORDÉON
+   ========================================================================== */
+.pricing-faq-wrapper {
+  margin-top: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faq-section-title {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--wa-panel-bg);
+  border: 1px solid var(--wa-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.faq-item:hover {
+  border-color: rgba(0, 168, 132, 0.4);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-icon {
+  font-size: 1.2rem;
+  color: var(--wa-green-accent);
+  transition: transform 0.25s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 20px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 250px;
+  padding: 0 20px 16px 20px;
+}
+
+.faq-answer p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   GESTION ABONNEMENT EN APPLICATION (CONSOLE DE SÉCURITÉ)
+   ========================================================================== */
+.sub-status-box {
+  background: rgba(3, 7, 18, 0.4);
+  border: 1px solid var(--wa-border);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.sub-status-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+}
+
+.badge-tier-free {
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.badge-tier-pro {
+  color: var(--wa-green-accent);
+  background: rgba(0, 168, 132, 0.15);
+  border: 1px solid var(--wa-green-primary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.badge-tier-founder {
+  color: var(--anon-cyan);
+  background: rgba(0, 240, 255, 0.15);
+  border: 1px solid var(--anon-cyan);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.sub-quota-line {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.sub-actions-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-secondary-outline {
+  background: transparent;
+  border: 1px solid var(--wa-border);
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-secondary-outline:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.btn-secondary-link {
+  color: var(--wa-green-accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 10px;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.btn-secondary-link:hover {
+  opacity: 0.8;
+}
+
