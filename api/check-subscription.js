@@ -3,9 +3,19 @@
 
 const Stripe = require("stripe");
 
+const ALLOWED_ORIGINS = [
+  "https://peekaboo.novaskill.tech",
+  "https://peekaboo-two-ebon.vercel.app",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000"
+];
+
 module.exports = async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const headerOrigin = req.headers.origin;
+  const safeCorsOrigin = headerOrigin && ALLOWED_ORIGINS.includes(headerOrigin)
+    ? headerOrigin
+    : "https://peekaboo-two-ebon.vercel.app";
+  res.setHeader("Access-Control-Allow-Origin", safeCorsOrigin);
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 

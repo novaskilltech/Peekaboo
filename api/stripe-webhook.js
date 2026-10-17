@@ -11,7 +11,7 @@ async function buffer(readable) {
   return Buffer.concat(chunks);
 }
 
-module.exports = async function handler(req, res) {
+async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Méthode non autorisée." });
   }
@@ -23,39 +23,35 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: "STRIPE_SECRET_KEY_MISSING" });
   }
 
+  if (!webhookSecret) {
+    console.error("[WEBHOOK_CONFIG_ERROR] STRIPE_WEBHOOK_SECRET non configuré.");
+    return res.status(500).json({ error: "STRIPE_WEBHOOK_SECRET_MISSING" });
+  }
+
   const stripe = new Stripe(stripeKey, { apiVersion: "2024-12-18.acacia" });
 
   let event;
 
   try {
     const rawBody = await buffer(req);
-
-    if (webhookSecret) {
-      const signature = req.headers["stripe-signature"];
-      if (!signature) {
-        return res.status(400).json({ error: "En-tête stripe-signature manquant." });
-      }
-      event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
-    } else {
-      // Mode développement / test sans secret de webhook configuré
-      console.warn("[WEBHOOK_WARNING] STRIPE_WEBHOOK_SECRET manquant : parsing direct sans vérification de signature.");
-      event = JSON.parse(rawBody.toString("utf8"));
+    const signature = req.headers["stripe-signature"];
+    if (!signature) {
+      return res.status(400).json({ error: "En-tête stripe-signature manquant." });
     }
+    event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
   } catch (err) {
     console.error("[WEBHOOK_SIGNATURE_VERIFICATION_FAILED]", err.message);
     return res.status(400).json({ error: `Signature webhook invalide : ${err.message}` });
   }
 
-  // Traitement des événements demandés
+  // Traitement des événements (Zéro PII dans les logs conformément au RGPD)
   try {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object;
         const plan = session.metadata ? session.metadata.plan : "unknown";
-        const customerId = session.customer;
-        const customerEmail = session.customer_details ? session.customer_details.email : null;
-        console.log(`[STRIPE] checkout.session.completed pour plan=${plan}, customer=${customerId}, email=${customerEmail}`);
-        // Ici : émission d'état d'abonnement actif
+        const customerId = session.customer || "none";
+        console.log(`[STRIPE] checkout.session.completed pour plan=${plan}, customer=${customerId}`);
         break;
       }
 
@@ -96,7 +92,14 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ received: true, eventType: event.type });
 
   } catch (err) {
-    console.error("[STRIPE_WEBHOOK_PROCESSING_ERROR]", err);
+    console.error("[STRIPE_WEBHOOK_PROCESSING_ERROR]", err.message);
     return res.status(500).json({ error: "Erreur lors du traitement de l'événement." });
+  }
+}
+
+module.exports = handler;
+module.exports.config = {
+  api: {
+    bodyParser: false
   }
 };

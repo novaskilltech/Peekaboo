@@ -246,16 +246,51 @@ async function runSecuritySuite() {
 
   // --- TEST 15 : Sécurité Serverless Stripe (Zéro secret côté client) ---
   const clientLeaksSecret = appJsContent.includes('sk_live_') || appJsContent.includes('sk_test_') || pricingConfigContent.includes('sk_');
-  const webhookVerifiesRawBody = fs.readFileSync('api/stripe-webhook.js', 'utf8').includes('stripe.webhooks.constructEvent');
+  const webhookContent = fs.readFileSync('api/stripe-webhook.js', 'utf8');
+  const webhookVerifiesRawBody = webhookContent.includes('stripe.webhooks.constructEvent') && webhookContent.includes('bodyParser: false');
   const checkoutHasServerless = fs.existsSync('api/create-checkout-session.js') && fs.existsSync('api/create-portal-session.js');
   report(
     "TEST 15 — Sécurité Paiement Stripe Serverless",
     !clientLeaksSecret && webhookVerifiesRawBody && checkoutHasServerless,
-    "Zéro secret Stripe exposé côté client, validation signature cryptographique webhook serveur."
+    "Zéro secret Stripe exposé côté client, bodyParser: false et validation signature cryptographique webhook serveur."
+  );
+
+  // --- TEST 16 : Validation Syntaxique AST (vm.Script) & Anti-Spoofing Checkout ---
+  const vm = require('vm');
+  const jsFilesToVerify = [
+    'web-app/app.js',
+    'web-app/pricing-config.js',
+    'web-app/analytics.js',
+    'web-app/sw.js',
+    'api/create-checkout-session.js',
+    'api/create-portal-session.js',
+    'api/stripe-webhook.js',
+    'api/check-subscription.js'
+  ];
+  let allSyntaxValid = true;
+  let syntaxErrorDetail = "";
+  for (const file of jsFilesToVerify) {
+    try {
+      const code = fs.readFileSync(file, 'utf8');
+      new vm.Script(code, { filename: file });
+    } catch (err) {
+      allSyntaxValid = false;
+      syntaxErrorDetail = `${file}: ${err.message}`;
+      break;
+    }
+  }
+  const hasNoUrlPlanBypass = !appJsContent.includes('saveSetting("user_plan", planParam)');
+  const hasOriginAllowlist = fs.readFileSync('api/create-checkout-session.js', 'utf8').includes('ALLOWED_ORIGINS');
+  report(
+    "TEST 16 — Validation Syntaxique AST & Hardening Checkout",
+    allSyntaxValid && hasNoUrlPlanBypass && hasOriginAllowlist,
+    allSyntaxValid
+      ? "8/8 fichiers JS compilés sans erreur AST, anti-spoofing URL actif et allowlist CORS validée."
+      : `Erreur de syntaxe détectée : ${syntaxErrorDetail}`
   );
 
   console.log("\n=================================================================");
-  console.log(`RÉSULTAT GLOBAL : ${passed}/15 tests réussis (${failed} échecs).`);
+  console.log(`RÉSULTAT GLOBAL : ${passed}/16 tests réussis (${failed} échecs).`);
   console.log("=================================================================");
 
   if (failed > 0) {

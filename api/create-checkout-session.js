@@ -3,10 +3,22 @@
 
 const Stripe = require("stripe");
 
+const ALLOWED_ORIGINS = [
+  "https://peekaboo.novaskill.tech",
+  "https://peekaboo-two-ebon.vercel.app",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000"
+];
+
+function resolveSafeOrigin(candidate, headerOrigin) {
+  if (candidate && ALLOWED_ORIGINS.includes(candidate)) return candidate;
+  if (headerOrigin && ALLOWED_ORIGINS.includes(headerOrigin)) return headerOrigin;
+  return "https://peekaboo-two-ebon.vercel.app";
+}
+
 module.exports = async function handler(req, res) {
-  // En-têtes CORS
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const safeCorsOrigin = resolveSafeOrigin(null, req.headers.origin);
+  res.setHeader("Access-Control-Allow-Origin", safeCorsOrigin);
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
@@ -39,7 +51,7 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const origin = returnOrigin || req.headers.origin || "https://peekaboo-two-ebon.vercel.app";
+    const origin = resolveSafeOrigin(returnOrigin, req.headers.origin);
 
     let lineItems = [];
     let mode = "subscription";

@@ -683,7 +683,7 @@ async function runInstallationChecklist() {
     row.style.gap = "8px";
     row.style.fontSize = "0.85rem";
     row.style.fontFamily = "var(--font-mono)";
-    row.style.color = it.ok ? "var(--neon-emerald)" : "var(--neon-crimson)";
+    row.style.color = it.ok ? "#38BDF8" : "var(--anon-red)";
 
     const icon = document.createElement("span");
     icon.textContent = it.ok ? "✓" : "✗";
@@ -691,7 +691,7 @@ async function runInstallationChecklist() {
 
     const text = document.createElement("span");
     text.textContent = it.label;
-    text.style.color = "var(--text-primary)";
+    text.style.color = "var(--wa-text-primary)";
 
     row.appendChild(icon);
     row.appendChild(text);
@@ -703,14 +703,21 @@ async function runInstallationChecklist() {
     const res = await fetch("./security-manifest.json");
     if (res.ok) {
       const data = await res.json();
-      document.getElementById("sec-version").textContent = data.version || "1.4.2";
-      document.getElementById("sec-build").textContent = data.buildId || "2026.09.16";
-      document.getElementById("sec-commit").textContent = data.commit || "a723bf9";
-      document.getElementById("sec-env").textContent = data.environment || "Production";
+      const elVer = document.getElementById("sec-version");
+      const elBuild = document.getElementById("sec-build");
+      const elCommit = document.getElementById("sec-commit");
+      const elEnv = document.getElementById("sec-env");
+      if (elVer) elVer.textContent = data.version || "1.6.1";
+      if (elBuild) elBuild.textContent = data.buildId || "2026.10.17";
+      if (elCommit) elCommit.textContent = data.commit || "43fd679";
+      if (elEnv) elEnv.textContent = data.environment || "Production";
     }
   } catch (e) {
-    document.getElementById("sec-version").textContent = "1.4.2 (Offline)";
+    const elVer = document.getElementById("sec-version");
+    if (elVer) elVer.textContent = "1.6.1 (Offline)";
   }
+}
+
 // --------------------------------------------------------------------------
 // 9B. GESTION DES FORMULES TARIFAIRES, STRIPE CHECKOUT & PORTAL
 // --------------------------------------------------------------------------
@@ -782,7 +789,11 @@ function applyFounderConfig() {
 
   const priceDisplay = document.getElementById("founder-price-display");
   if (priceDisplay && cfg.priceDisplay) {
-    priceDisplay.innerHTML = `${cfg.priceDisplay} <span class="plan-period">${cfg.period || "Paiement unique"}</span>`;
+    priceDisplay.textContent = `${cfg.priceDisplay} `;
+    const periodSpan = document.createElement("span");
+    periodSpan.className = "plan-period";
+    periodSpan.textContent = cfg.period || "Paiement unique";
+    priceDisplay.appendChild(periodSpan);
   }
 
   const countdownBox = document.getElementById("founder-countdown-box");
@@ -911,7 +922,6 @@ async function openCustomerPortal() {
 async function handleCheckoutReturn() {
   const urlParams = new URLSearchParams(window.location.search);
   const sessionId = urlParams.get("checkout_session_id");
-  const planParam = urlParams.get("plan");
   const statusParam = urlParams.get("status");
 
   if (sessionId && statusParam === "success") {
@@ -921,7 +931,7 @@ async function handleCheckoutReturn() {
       const res = await fetch(`/api/check-subscription?session_id=${encodeURIComponent(sessionId)}`);
       if (res.ok) {
         const data = await res.json();
-        if (data.isPremium) {
+        if (data.isPremium === true && data.plan) {
           await SecureKeyStore.saveSetting("user_plan", data.plan);
           if (data.customerId) {
             await SecureKeyStore.saveSetting("stripe_customer_id", data.customerId);
@@ -932,16 +942,9 @@ async function handleCheckoutReturn() {
           alert(`🎉 Félicitations ! Votre formule [${data.plan.toUpperCase()}] est maintenant activée.`);
           await updateSubscriptionUi();
         }
-      } else if (planParam) {
-        await SecureKeyStore.saveSetting("user_plan", planParam);
-        await updateSubscriptionUi();
       }
     } catch (err) {
-      console.warn("[CHECKOUT_VERIFICATION_OFFLINE]", err);
-      if (planParam) {
-        await SecureKeyStore.saveSetting("user_plan", planParam);
-        await updateSubscriptionUi();
-      }
+      console.warn("[CHECKOUT_VERIFICATION_FAILED]", err);
     }
   }
 }
